@@ -165,6 +165,68 @@ const Hipercubo6D = () => {
   return <group ref={group} scale={0.6}>{blocks}</group>;
 };
 
+// 4. Primos Fundamentales 3D (2, 3, 5, 7, 11)
+const PrimosFundamentales3D = () => {
+  const group = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (group.current) {
+      group.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.2;
+    }
+  });
+
+  const primes = [
+    { num: 2, color: "#ef4444", pos: [-8, 0, 0], desc: "Dimensión X" },
+    { num: 3, color: "#f97316", pos: [-4, 0, 0], desc: "Dimensión Y" },
+    { num: 5, color: "#eab308", pos: [0, 0, 0], desc: "Dimensión Z" },
+    { num: 7, color: "#10b981", pos: [4, 0, 0], desc: "Densidad" },
+    { num: 11, color: "#3b82f6", pos: [8, 0, 0], desc: "Vibración" }
+  ];
+
+  return (
+    <group ref={group} position={[0, 0, 0]} scale={0.8}>
+      {primes.map((p, i) => (
+        <Float key={p.num} speed={2} rotationIntensity={1} floatIntensity={1.5} floatingRange={[-0.5, 0.5]}>
+          <group position={p.pos as [number, number, number]}>
+            {/* Core glowing sphere */}
+            <mesh>
+              <sphereGeometry args={[1.2, 32, 32]} />
+              <meshPhysicalMaterial 
+                color={p.color} 
+                emissive={p.color}
+                emissiveIntensity={0.2}
+                transmission={0.9} 
+                opacity={1} 
+                roughness={0}
+                ior={1.5}
+                transparent={true}
+              />
+            </mesh>
+            {/* Outline rings */}
+            <mesh rotation={[Math.PI / 2, 0, 0]}>
+              <ringGeometry args={[1.5, 1.55, 32]} />
+              <meshBasicMaterial color={p.color} transparent opacity={0.5} side={THREE.DoubleSide} />
+            </mesh>
+            <mesh rotation={[0, Math.PI / 2, 0]}>
+              <ringGeometry args={[1.5, 1.55, 32]} />
+              <meshBasicMaterial color={p.color} transparent opacity={0.5} side={THREE.DoubleSide} />
+            </mesh>
+            {/* Prime Number Text */}
+            <Text position={[0, 0, 1.5]} fontSize={1.5} color="#fff" fontWeight="bold">
+              {p.num}
+            </Text>
+            {/* Prime Description Text */}
+            <Text position={[0, -2.5, 0]} fontSize={0.4} color={p.color} letterSpacing={0.1}>
+              {p.desc}
+            </Text>
+          </group>
+        </Float>
+      ))}
+      <gridHelper args={[30, 30, '#e2e8f0', '#f1f5f9']} position={[0, -4, 0]} />
+    </group>
+  );
+};
+
 // 4. Espiral Aurea 3D (Geometría de Reposo vs Corriente de Intención)
 const EspiralAurea3D = () => {
   const group = useRef<THREE.Group>(null);
@@ -275,6 +337,34 @@ export default function GeometriaDimensional() {
               Interactúa con las representaciones topológicas 3D, 4D y 6D de la factorización prima. Gira las figuras con tu cursor.
             </p>
           </motion.div>
+        </Section>
+
+        {/* SLIDE 1.5: Los Primeros 5 Primos */}
+        <Section>
+          <div className="flex flex-col items-center gap-10 bg-white/60 backdrop-blur-sm rounded-[3rem] p-8 lg:p-12 shadow-lg border border-white min-h-[70vh]">
+             <div className="w-full text-center space-y-4 max-w-3xl mx-auto">
+               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 font-bold text-sm uppercase tracking-widest">
+                 Geometría Pura
+               </div>
+               <h2 className="text-4xl lg:text-5xl font-bold font-sans text-slate-800">Los 5 Primos Fundamentales</h2>
+               <p className="text-xl text-slate-600 leading-relaxed font-light">
+                 Antes de construir volúmenes complejos, el universo define sus dimensiones base. Estos son los primeros 5 átomos topológicos indivisibles de la creación.
+               </p>
+             </div>
+             
+             <div className="w-full flex-1 min-h-[400px] bg-slate-900/5 rounded-3xl overflow-hidden cursor-move border border-slate-200/50 shadow-inner relative">
+               <Canvas camera={{ position: [0, 2, 18], fov: 45 }}>
+                 <ambientLight intensity={1} />
+                 <directionalLight position={[5, 10, 5]} intensity={2} />
+                 <Environment preset="city" />
+                 <PrimosFundamentales3D />
+                 <OrbitControls enableZoom={true} minDistance={10} maxDistance={30} />
+               </Canvas>
+               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400 flex items-center gap-2 text-sm font-medium bg-white/80 px-4 py-2 rounded-full shadow-sm backdrop-blur-md">
+                 <ZoomIn className="w-4 h-4" /> Interactúa con los vectores de frecuencia base
+               </div>
+             </div>
+          </div>
         </Section>
 
         {/* SLIDE 2: 3D */}
