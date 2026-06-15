@@ -2,18 +2,12 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { StorySlide } from "./components/StorySlide";
 import { InteractiveWorkshop } from "./components/InteractiveWorkshop";
-import { ChalkBorder } from "./components/ChalkBorder";
 import { 
-  Sparkles, 
   ChevronLeft, 
   ChevronRight, 
   Volume2, 
   VolumeX, 
-  Compass, 
-  HelpCircle, 
-  Hammer, 
-  SlidersHorizontal,
-  Bookmark
+  Hammer
 } from "lucide-react";
 
 export default function App() {
@@ -21,110 +15,81 @@ export default function App() {
   const [soundEnabled, setSoundEnabled] = useState<boolean>(false);
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
 
-  // Simple safe standard Web Audio API procedure to synthesize beautiful starry bell notes
   const playCelestialTone = (frequencies: number[]) => {
     if (!soundEnabled) return;
     try {
       const ctx = audioCtx || new (window.AudioContext || (window as any).webkitAudioContext)();
-      if (!audioCtx) {
-        setAudioCtx(ctx);
-      }
-      
+      if (!audioCtx) setAudioCtx(ctx);
       const now = ctx.currentTime;
       frequencies.forEach((freq, idx) => {
-        // Create oscillator and filter
         const osc = ctx.createOscillator();
         const gainNode = ctx.createGain();
         const filter = ctx.createBiquadFilter();
-        
         osc.type = "sine";
-        // Slightly detune to sound vintage/chime-like
         osc.frequency.setValueAtTime(freq, now + idx * 0.08);
-        
         filter.type = "lowpass";
         filter.frequency.setValueAtTime(1200, now);
-        
-        // Soft envelope
         gainNode.gain.setValueAtTime(0, now);
-        gainNode.gain.linearRampToValueAtTime(0.12, now + 0.02 + idx * 0.05);
+        gainNode.gain.linearRampToValueAtTime(0.1, now + 0.02 + idx * 0.05);
         gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.2 + idx * 0.1);
-        
         osc.connect(filter);
         filter.connect(gainNode);
         gainNode.connect(ctx.destination);
-        
         osc.start(now + idx * 0.08);
         osc.stop(now + 1.5 + idx * 0.1);
       });
     } catch (e) {
-      console.warn("Audio Context blocked or failed to initialize", e);
+      console.warn("Audio blocked", e);
     }
   };
 
-  // Play sparkle sound when changing pages/chapters
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // Trigonometric or harmonic chords corresponding to page numbers (e.g. 2, 3, 5, 7, 11 frequency ratios)
-    const baseFreq = 220; 
+    const baseFreq = 220;
     const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37];
     const primeFactorRatio = primes[(page - 1) % primes.length];
-    
-    // Play compound chime
-    playCelestialTone([baseFreq, baseFreq * (1 + page/10), baseFreq * (1.5 + primeFactorRatio/15)]);
+    playCelestialTone([baseFreq, baseFreq * (1 + page / 10), baseFreq * (1.5 + primeFactorRatio / 15)]);
   };
 
   const handleNextPage = () => {
-    if (currentPage < 12) {
-      handlePageChange(currentPage + 1);
-    } else {
-      handlePageChange(1); // loop to beginning
-    }
+    if (currentPage < 12) handlePageChange(currentPage + 1);
+    else handlePageChange(1);
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 1) {
-      handlePageChange(currentPage - 1);
-    } else {
-      handlePageChange(12); // loop to end
-    }
+    if (currentPage > 1) handlePageChange(currentPage - 1);
+    else handlePageChange(12);
   };
 
-  // Navigates directly to the workshop, scrolling smoothly down
   const jumpToWorkshop = () => {
-    playCelestialTone([293.66, 349.23, 440.00, 523.25]); // Beautiful Dm7 chord
+    playCelestialTone([293.66, 349.23, 440.00, 523.25]);
     const workshopEl = document.getElementById("interactive-taller");
-    if (workshopEl) {
-      workshopEl.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (workshopEl) workshopEl.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Pre-load audio toggler helper
   const toggleSound = () => {
     const nextState = !soundEnabled;
     setSoundEnabled(nextState);
     if (nextState) {
-      // Trigger instant celestial greeting chord (Ruby, Sapphire harmony)
       setTimeout(() => {
         try {
           const tempCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
           setAudioCtx(tempCtx);
           const now = tempCtx.currentTime;
-          // Ruby chord
           const osc1 = tempCtx.createOscillator();
           const gain1 = tempCtx.createGain();
-          osc1.frequency.setValueAtTime(329.63, now); // E4
-          gain1.gain.setValueAtTime(0.08, now);
+          osc1.frequency.setValueAtTime(329.63, now);
+          gain1.gain.setValueAtTime(0.07, now);
           gain1.gain.exponentialRampToValueAtTime(0.001, now + 1);
           osc1.connect(gain1);
           gain1.connect(tempCtx.destination);
           osc1.start(now);
           osc1.stop(now + 1);
-        } catch(err){}
+        } catch (err) {}
       }, 50);
     }
   };
 
-  // Key chapters titles index
   const chapters = [
     { page: 1, title: "Inicio" },
     { page: 2, title: "La Materia" },
@@ -133,122 +98,98 @@ export default function App() {
     { page: 5, title: "Compuestos" },
     { page: 6, title: "Dos Linajes" },
     { page: 7, title: "Raíces" },
-    { page: 8, title: "Fisión Nuclear" },
-    { page: 9, title: "El ADN Único" },
+    { page: 8, title: "Fisión" },
+    { page: 9, title: "ADN Único" },
     { page: 10, title: "La Receta" },
     { page: 11, title: "La Escalera" },
     { page: 12, title: "El Comienzo" }
   ];
 
   return (
-    <div id="master-root" className="min-h-screen bg-slate-chalkboard pb-24 text-slate-100 overflow-x-hidden font-sans relative">
-      
-      {/* Sparkly global background stars */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-12 left-1/4 w-1.5 h-1.5 bg-amber-200/40 rounded-full animate-twinkle" style={{ animationDelay: "0.5s" }} />
-        <div className="absolute top-44 right-1/3 w-1 h-1 bg-white/30 rounded-full animate-twinkle" style={{ animationDelay: "2s" }} />
-        <div className="absolute top-[35%] left-[8%] w-2 h-2 bg-blue-300/20 rounded-full animate-twinkle" style={{ animationDelay: "1.2s" }} />
-        <div className="absolute top-[60%] right-[10%] w-1.5 h-1.5 bg-purple-300/40 rounded-full animate-twinkle" style={{ animationDelay: "2.8s" }} />
-        <div className="absolute bottom-[20%] left-[15%] w-1 h-1 bg-green-200/30 rounded-full animate-twinkle" style={{ animationDelay: "0.1s" }} />
-        <div className="absolute bottom-[10%] right-[25%] w-2 h-2 bg-pink-300/30 rounded-full animate-twinkle" style={{ animationDelay: "1.9s" }} />
-        
-        {/* Soft floating dust ring representation (galaxy aura) */}
-        <div className="absolute top-[10%] left-[85%] w-[380px] h-[380px] rounded-full bg-blue-400/5 blur-[120px]" />
-        <div className="absolute bottom-[35%] right-[80%] w-[420px] h-[420px] rounded-full bg-indigo-500/5 blur-[130px]" />
-      </div>
+    <div id="master-root" className="min-h-screen bg-light-warm pb-24 text-slate-800 overflow-x-hidden font-sans">
 
-      {/* GLOBAL HERO STYLED HEADER */}
-      <header className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-4 flex flex-col md:flex-row items-center justify-between gap-4 border-b border-stone-900/40">
-        
-        {/* Main Logo */}
-        <div className="flex items-center gap-3">
-          {/* Logo crystal badge design */}
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500 to-orange-700 p-[1px] flex items-center justify-center shadow-lg">
-            <div className="w-full h-full bg-[#0d1622] rounded-xl flex items-center justify-center font-serif text-lg font-bold text-amber-300">
-              7
+      {/* HEADER */}
+      <header className="w-full bg-white/80 backdrop-blur-sm border-b border-slate-100 sticky top-0 z-50">
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between gap-4">
+          
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-sm">
+              <span className="font-bold text-white text-lg">7</span>
+            </div>
+            <div>
+              <h1 className="text-base font-bold text-slate-800 leading-tight">
+                El Taller del Arquitecto Cósmico
+              </h1>
+              <span className="text-[11px] text-slate-400 font-medium tracking-wide uppercase">
+                La Ley de los Números Primos
+              </span>
             </div>
           </div>
-          <div>
-            <h1 className="text-xl font-serif font-bold text-amber-100 tracking-wider">
-              El Taller del Arquitecto Cósmico
-            </h1>
-            <span className="text-[10px] text-stone-500 font-mono tracking-widest block uppercase">
-              La Hermosa Ley de los Números Primos
-            </span>
+
+          {/* Controls */}
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={toggleSound}
+              className={`px-3 py-2 rounded-lg border text-sm font-medium flex items-center gap-2 transition-all ${
+                soundEnabled
+                  ? "bg-amber-50 border-amber-200 text-amber-700"
+                  : "bg-white border-slate-200 text-slate-500 hover:text-slate-700 hover:border-slate-300"
+              }`}
+            >
+              {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+              <span className="hidden sm:inline">{soundEnabled ? "Sonido ON" : "Sonido OFF"}</span>
+            </button>
+
+            <button
+              onClick={jumpToWorkshop}
+              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold flex items-center gap-2 transition-all shadow-sm"
+            >
+              <Hammer className="w-3.5 h-3.5" /> Ir al Taller
+            </button>
           </div>
         </div>
-
-        {/* Action controls */}
-        <div className="flex items-center gap-3.5">
-          {/* Audio Chime toggler */}
-          <button
-            onClick={toggleSound}
-            className={`p-2.5 rounded-xl border flex items-center gap-2 transition-all text-xs font-mono uppercase ${
-              soundEnabled
-                ? "bg-amber-950/40 border-amber-500/40 text-amber-300 shadow-md"
-                : "bg-slate-950/60 border-stone-850 text-stone-500 hover:text-stone-300"
-            }`}
-            title={soundEnabled ? "Sinfonía celeste activada. Haz clic para silenciar." : "Sinfonía celeste desactivada. Haz clic para activar acordes armónicos."}
-          >
-            {soundEnabled ? <Volume2 className="w-4 h-4 text-amber-400" /> : <VolumeX className="w-4 h-4" />}
-            <span className="hidden sm:inline">{soundEnabled ? "Sonido ON" : "Sonido OFF"}</span>
-          </button>
-
-          {/* Jump to workshop */}
-          <button
-            onClick={jumpToWorkshop}
-            className="px-4 py-2 bg-[#1c2c3e] border border-emerald-500/25 hover:border-emerald-500/50 text-emerald-300 hover:text-emerald-200 rounded-xl text-xs font-mono uppercase transition-all flex items-center gap-2 shadow"
-          >
-            <Hammer className="w-3.5 h-3.5" /> Ir al Taller
-          </button>
-        </div>
-
       </header>
 
-      {/* PRIMARY CONTAINER */}
-      <main className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-8 space-y-12">
-        
-        {/* STORY CAROUSEL WRAPPER WITH CHAPTER SELECTORS */}
-        <section className="space-y-6">
+      {/* MAIN */}
+      <main className="w-full max-w-6xl mx-auto px-4 md:px-8 py-10 space-y-10">
+
+        {/* STORY SECTION */}
+        <section className="space-y-5">
           
-          {/* Chapter map timeline bar */}
-          <div className="bg-[#0b1018]/80 p-3 rounded-2xl border border-stone-900/60 shadow-inner overflow-x-auto scrollbar-none flex gap-2">
-            <div className="flex justify-between w-full min-w-[760px] px-2 items-center">
-              <span className="text-[10px] font-mono text-stone-500 mr-2 uppercase tracking-tight shrink-0">Capítulos:</span>
+          {/* Chapter timeline */}
+          <div className="bg-white rounded-2xl border border-slate-100 card-shadow p-3 overflow-x-auto">
+            <div className="flex justify-between w-full min-w-[720px] px-2 items-center">
+              <span className="text-[11px] font-mono text-slate-400 mr-3 uppercase tracking-wide shrink-0">Capítulos:</span>
               
               <div className="flex-1 flex justify-around items-center relative">
-                {/* Horizontal progress guide line */}
-                <div className="absolute inset-x-0 h-[1.5px] bg-stone-800 z-0" />
+                {/* Track line */}
+                <div className="absolute inset-x-0 h-[1.5px] bg-slate-100 z-0" />
                 <div 
-                  className="absolute left-0 h-[2px] bg-gradient-to-r from-red-500 to-purple-500 z-0 transition-all duration-300"
+                  className="absolute left-0 h-[2px] bg-gradient-to-r from-amber-400 to-orange-400 z-0 transition-all duration-300"
                   style={{ width: `${((currentPage - 1) / 11) * 100}%` }}
                 />
 
-                {/* Chapter checkpoints bubble list */}
                 {chapters.map((ch) => {
                   const isActive = currentPage === ch.page;
                   const isPassed = currentPage > ch.page;
-                  
                   return (
                     <button
                       key={ch.page}
                       onClick={() => handlePageChange(ch.page)}
                       className="relative z-10 flex flex-col items-center group pt-1"
                     >
-                      {/* Checkpoint Circle */}
-                      <div className={`w-7.5 h-7.5 rounded-full flex items-center justify-center font-mono text-xs border transition-all ${
+                      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
                         isActive
-                          ? "bg-gradient-to-br from-amber-400 to-orange-600 border-amber-300 text-slate-950 font-bold scale-110 shadow-lg"
+                          ? "bg-amber-400 border-amber-400 text-white scale-110 shadow-md"
                           : isPassed
-                            ? "bg-stone-900 border-amber-600/50 text-amber-500/80"
-                            : "bg-slate-950 border-stone-850 text-stone-500 hover:text-stone-300 hover:border-stone-700"
+                            ? "bg-amber-50 border-amber-300 text-amber-600"
+                            : "bg-white border-slate-200 text-slate-400 hover:border-slate-300 hover:text-slate-600"
                       }`}>
                         {ch.page}
                       </div>
-
-                      {/* Floating Indicator banner */}
-                      <span className={`absolute top-full mt-2 text-[10px] font-hand whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity bg-stone-950 text-stone-300 px-2 py-0.5 rounded shadow z-40 relative pointer-events-none ${
-                        isActive ? "opacity-100 text-amber-400 font-bold" : ""
+                      <span className={`absolute top-full mt-1.5 text-[10px] font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 text-white px-2 py-0.5 rounded-md shadow z-40 pointer-events-none ${
+                        isActive ? "opacity-100 !bg-amber-500" : ""
                       }`}>
                         {ch.title}
                       </span>
@@ -259,92 +200,80 @@ export default function App() {
             </div>
           </div>
 
-          {/* ACTIVE CAROUSEL BOARD SLIDER WITH TRANSITIONS */}
+          {/* Carousel */}
           <div className="relative">
-            {/* Carousel navigation controls (Left / Right floating pegs) */}
-            <div className="absolute inset-y-0 -left-4 md:-left-6 w-12 flex items-center justify-start z-10 pointer-events-none">
+            <div className="absolute inset-y-0 -left-5 md:-left-7 w-12 flex items-center justify-start z-10 pointer-events-none">
               <button
                 onClick={handlePrevPage}
-                className="p-3 rounded-full bg-slate-950/85 border border-stone-800 text-stone-400 hover:text-white pointer-events-auto shadow-lg hover:shadow-xl hover:border-stone-700 transition-all active:scale-90"
-                title="Página Anterior"
+                className="p-2.5 rounded-full bg-white border border-slate-200 text-slate-500 hover:text-slate-800 pointer-events-auto shadow-sm hover:shadow-md hover:border-slate-300 transition-all active:scale-90"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="absolute inset-y-0 -right-4 md:-right-6 w-12 flex items-center justify-end z-10 pointer-events-none">
+            <div className="absolute inset-y-0 -right-5 md:-right-7 w-12 flex items-center justify-end z-10 pointer-events-none">
               <button
                 onClick={handleNextPage}
-                className="p-3 rounded-full bg-slate-950/85 border border-stone-800 text-stone-400 hover:text-white pointer-events-auto shadow-lg hover:shadow-xl hover:border-stone-700 transition-all active:scale-90"
-                title="Página Siguiente"
+                className="p-2.5 rounded-full bg-white border border-slate-200 text-slate-500 hover:text-slate-800 pointer-events-auto shadow-sm hover:shadow-md hover:border-slate-300 transition-all active:scale-90"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Carousel screen */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentPage}
-                initial={{ opacity: 0, x: 25 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -25 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <StorySlide pageNumber={currentPage} onNavigateToWorkshop={jumpToWorkshop} />
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Sizing helper footnotes */}
-          <div className="flex justify-between items-center px-2 text-stone-500 font-hand text-sm">
-            <span>✎ Consejo: Usa las flechas flotantes de los lados para voltear la página.</span>
-            <span>✧ El secreto de la materia es indivisible.</span>
+          <div className="flex justify-between items-center px-1 text-slate-400 text-sm">
+            <span>✎ Usa las flechas laterales para pasar de página.</span>
+            <span>El secreto de la materia es indivisible. ✧</span>
           </div>
-
         </section>
 
-        {/* TRANSITION SPLIT BANNER */}
-        <div className="py-6">
-          <ChalkBorder variant="vines" color="text-amber-500/15" />
+        {/* DIVIDER */}
+        <div className="flex items-center gap-4 py-2">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+          <span className="text-slate-300 text-xl">✦</span>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
         </div>
 
-        {/* THE CORE INTERACTIVE MATHEMATICS WORKSHOP (SANDBOX & SIENS GAMES) */}
+        {/* WORKSHOP */}
         <section className="relative">
-          {/* Dynamic tag frame decoration */}
-          <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-gradient-to-r from-amber-600/20 via-[#0d1622] to-amber-600/20 border-2 border-amber-500/15 text-center text-xs font-mono text-amber-400 z-10 tracking-widest shadow">
-            LABORATORIO COGNITIVO
+          <div className="absolute -top-5 left-1/2 -translate-x-1/2 px-5 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-widest card-shadow z-10">
+            Laboratorio Cognitivo
           </div>
-
           <InteractiveWorkshop />
         </section>
 
-        {/* PEDAGOGICAL SUMMARY APPENDIX */}
-        <section className="p-8 bg-[#0a111a]/85 rounded-3xl border border-stone-900/60 shadow-xl space-y-6 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 font-serif text-[120px] leading-none text-stone-800/10 pointer-events-none select-none">
-            ?
-          </div>
-          
-          <h3 className="text-xl md:text-2xl font-serif text-amber-200 font-bold flex items-center gap-2">
+        {/* APPENDIX */}
+        <section className="p-8 bg-white rounded-3xl border border-slate-100 card-shadow-md space-y-5">
+          <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2">
             <span className="text-amber-500">❃</span> Apoyo de Aprendizaje Matemático
           </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-stone-300 leading-relaxed font-hand text-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-600 text-base leading-relaxed">
             <div className="space-y-3">
               <p>
-                Este recorrido dinámico del <strong>"Taller del Arquitecto Cósmico"</strong> expone un teorema sagrado conocido como el <strong>Teorema Fundamental de la Aritmética</strong>.
+                Este recorrido dinámico del <strong className="text-slate-800">"Taller del Arquitecto Cósmico"</strong> expone el <strong className="text-slate-800">Teorema Fundamental de la Aritmética</strong>.
               </p>
               <p>
-                Imagina que cada número entero mayor de 1 es como una sustancia química de la materia. O bien es un elemento químico puro (<strong>un número primo</strong>) que no se puede descomponer en otras porciones, o es una aleación formada por multiplicar un conjunto exclusivo de elementos puros (<strong> números compuestos</strong>).
+                Cada número entero mayor de 1 es como una sustancia química. O bien es un elemento químico puro (<strong className="text-slate-800">un número primo</strong>) o es una aleación formada por multiplicar un conjunto exclusivo de elementos puros (<strong className="text-slate-800">números compuestos</strong>).
               </p>
             </div>
-            
             <div className="space-y-3">
               <p>
-                En el taller puedes comprobar que la receta molecular es única. Es imposible soldar el número 12 con gemas diferentes de <code>2 × 2 × 3</code>. No existe fórmula con cincos o sietes que sume o configure su composición secreta.
+                En el taller podés comprobar que la receta molecular es única. Es imposible construir el número 12 con gemas diferentes de <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-700">2 × 2 × 3</code>.
               </p>
               <p>
-                Este "ADN numérico" es la clave inviolable que rige la criptografía moderna en Internet. Toda la seguridad de tus contraseñas y transacciones se basa en esta hermosa asimetría: es muy fácil juntar gemas cósmicas para fabricar un candado gigante, pero extremadamente difícil desarmarlo sin poseer la clave de sus factores raíces.
+                Este "ADN numérico" es la clave que rige la criptografía moderna en Internet. Toda la seguridad de tus contraseñas se basa en esta hermosa asimetría.
               </p>
             </div>
           </div>
@@ -353,10 +282,9 @@ export default function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 pt-8 mt-12 border-t border-stone-900/40 text-center text-xs text-stone-500 font-mono space-y-3">
-        <ChalkBorder variant="footer" color="stroke-emerald-500/10" className="opacity-40" />
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 text-stone-600">
-          <span>© 100% Creado bajo la Ley de Primos del Arquitecto Cósmico</span>
+      <footer className="w-full max-w-6xl mx-auto px-4 md:px-8 pt-8 mt-8 border-t border-slate-100 text-center text-xs text-slate-400 font-medium">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+          <span>© Creado bajo la Ley de Primos del Arquitecto Cósmico</span>
           <span>Basado fielmente en el manual de ilustraciones matemáticas</span>
         </div>
       </footer>
