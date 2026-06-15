@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Sparkles, BrainCircuit, ArrowRight, Binary, BookOpen, Cpu, Radio } from 'lucide-react';
+import { Sparkles, BrainCircuit, ArrowRight, Binary, BookOpen, Cpu, Radio, Split } from 'lucide-react';
 
 export default function Matematikas() {
   return (
@@ -56,7 +56,7 @@ export default function Matematikas() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Taller Card */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -179,6 +179,38 @@ export default function Matematikas() {
                   
                   <div className="flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all mt-auto">
                     <span>Sintonizar frecuencia</span>
+                    <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* P vs NP Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <Link 
+                to="/p-vs-np" 
+                className="group block relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 overflow-hidden h-full"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#f2f1eb]/20 to-amber-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg shadow-amber-500/20 mb-6 group-hover:scale-110 transition-transform duration-500">
+                    <Split className="w-6 h-6 text-white" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors">
+                    P vs NP
+                  </h3>
+                  <p className="text-slate-400 mb-8 line-clamp-3">
+                    El Santo Grial de la computación define el alma del universo. Descubre la física de la conciencia y el Libre Albedrío.
+                  </p>
+                  
+                  <div className="flex items-center text-amber-400 font-medium group-hover:gap-2 transition-all mt-auto">
+                    <span>Cuestionar la realidad</span>
                     <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   </div>
                 </div>
