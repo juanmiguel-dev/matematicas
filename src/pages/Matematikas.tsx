@@ -64,7 +64,7 @@ export default function Matematikas() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Link 
-                to="/taller" 
+                to="/numeros-primos" 
                 className="group block relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -75,7 +75,7 @@ export default function Matematikas() {
                   </div>
                   
                   <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors">
-                    El Taller del Arquitecto Cósmico
+                    Números Primos
                   </h3>
                   <p className="text-slate-400 mb-8 line-clamp-2">
                     Descubre el Teorema Fundamental de la Aritmética construyendo números compuestos a partir de sus bloques fundamentales: los números primos.

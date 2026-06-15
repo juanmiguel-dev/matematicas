@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function Taller() {
+export default function NumerosPrimos() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(false);
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
@@ -120,7 +120,7 @@ export default function Taller() {
             </div>
             <div>
               <h1 className="text-base font-bold text-slate-800 leading-tight">
-                El Taller del Arquitecto Cósmico
+                Números Primos
               </h1>
               <span className="text-[11px] text-slate-400 font-medium tracking-wide uppercase">
                 MATEMATIKAS
