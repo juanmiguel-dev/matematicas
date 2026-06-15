@@ -378,36 +378,43 @@ export default function GeometriaDimensional() {
         </Section>
 
         {/* SLIDE 5: Espiral Aurea (Geometria de Reposo vs Intention Current) */}
-        <Section>
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 bg-[#0f172a] rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-slate-700 h-auto lg:h-[80vh]">
-             <div className="flex-1 space-y-8 w-full">
-               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-900/50 text-teal-300 font-bold text-sm uppercase tracking-widest border border-teal-700/50">
+        <section className="relative w-screen h-screen -ml-[calc(50vw-50%)] overflow-hidden bg-[#0b101e]">
+          {/* Background Canvas (Full Screen) */}
+          <div className="absolute inset-0 w-full h-full cursor-move z-0">
+            <Canvas camera={{ position: [20, 15, 25], fov: 45 }}>
+              <color attach="background" args={['#0b101e']} />
+              <ambientLight intensity={0.8} />
+              <EspiralAurea3D />
+              <OrbitControls autoRotate autoRotateSpeed={0.3} enableZoom={true} />
+            </Canvas>
+          </div>
+
+          {/* Floating UI Card */}
+          <div className="absolute z-10 bottom-12 lg:bottom-auto lg:top-1/2 left-6 lg:left-24 lg:-translate-y-1/2 max-w-md w-full pointer-events-none">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl pointer-events-auto"
+            >
+               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-900/50 text-teal-300 font-bold text-xs uppercase tracking-widest border border-teal-700/50 mb-6">
                  Fase de Reposo
                </div>
-               <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white">Espiral Áurea 3D</h2>
-               <p className="text-xl text-slate-300 leading-relaxed font-light">
+               <h2 className="text-4xl font-bold font-sans text-white mb-4">Espiral Áurea 3D</h2>
+               <p className="text-slate-300 leading-relaxed font-light mb-8">
                  Visualización del gráfico tridimensional donde la espiral áurea ($Φ$) yace en el plano de la Geometría de Reposo.
                </p>
-               <div className="bg-slate-800/80 border border-slate-700 rounded-2xl p-6">
-                 <div className="text-3xl font-bold font-serif italic text-amber-400 mb-2">J<sub className="text-lg">s</sub> = 0</div>
-                 <div className="text-lg text-teal-300 font-mono">Corriente de Intención</div>
-                 <div className="text-sm text-slate-400 mt-2">La curva azul representa la irrupción de la intención creativa que rompe el reposo perfecto (P=NP).</div>
+               <div className="bg-slate-900/80 border border-slate-700 rounded-2xl p-5 mb-6">
+                 <div className="text-2xl font-bold font-serif italic text-amber-400 mb-1">J<sub className="text-sm">s</sub> = 0</div>
+                 <div className="text-sm text-teal-300 font-mono mb-2">Corriente de Intención</div>
+                 <div className="text-xs text-slate-400">La curva azul representa la irrupción de la intención creativa que rompe el reposo perfecto (P=NP).</div>
                </div>
-               <p className="text-teal-400 flex items-center gap-2 text-sm font-medium">
-                 <ZoomIn className="w-4 h-4" /> La gráfica rota en 3D para revelar las proyecciones XYZ.
+               <p className="text-teal-400 flex items-center gap-2 text-xs font-medium uppercase tracking-wider">
+                 <ZoomIn className="w-4 h-4" /> Arrastra para rotar en 3D
                </p>
-             </div>
-             
-             <div className="flex-1 w-full h-[500px] lg:h-full bg-[#111827] rounded-3xl overflow-hidden cursor-move border border-slate-700 shadow-inner">
-               <Canvas camera={{ position: [20, 15, 25], fov: 45 }}>
-                 <color attach="background" args={['#0b101e']} />
-                 <ambientLight intensity={0.8} />
-                 <EspiralAurea3D />
-                 <OrbitControls autoRotate autoRotateSpeed={0.3} enableZoom={true} />
-               </Canvas>
-             </div>
+            </motion.div>
           </div>
-        </Section>
+        </section>
         
       </main>
     </div>
