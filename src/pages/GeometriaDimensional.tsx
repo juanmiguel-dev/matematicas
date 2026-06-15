@@ -176,53 +176,59 @@ const PrimosFundamentales3D = () => {
   });
 
   const primes = [
-    { num: 2, color: "#ef4444", pos: [-8, 0, 0], desc: "Dimensión X" },
-    { num: 3, color: "#f97316", pos: [-4, 0, 0], desc: "Dimensión Y" },
-    { num: 5, color: "#eab308", pos: [0, 0, 0], desc: "Dimensión Z" },
-    { num: 7, color: "#10b981", pos: [4, 0, 0], desc: "Densidad" },
-    { num: 11, color: "#3b82f6", pos: [8, 0, 0], desc: "Vibración" }
+    { num: 2, color: "#ef4444", pos: [-8, 0, 0], desc: "Línea (1D)", segments: 2 },
+    { num: 3, color: "#f97316", pos: [-4, 0, 0], desc: "Triángulo", segments: 3 },
+    { num: 5, color: "#eab308", pos: [0, 0, 0], desc: "Pentágono", segments: 5 },
+    { num: 7, color: "#10b981", pos: [4, 0, 0], desc: "Heptágono", segments: 7 },
+    { num: 11, color: "#3b82f6", pos: [8, 0, 0], desc: "Hendecágono", segments: 11 }
   ];
 
   return (
-    <group ref={group} position={[0, 0, 0]} scale={0.8}>
+    <group ref={group} position={[0, 0, 0]} scale={0.7}>
       {primes.map((p, i) => (
-        <Float key={p.num} speed={2} rotationIntensity={1} floatIntensity={1.5} floatingRange={[-0.5, 0.5]}>
+        <Float key={p.num} speed={2} rotationIntensity={1.5} floatIntensity={1.5} floatingRange={[-0.5, 0.5]}>
           <group position={p.pos as [number, number, number]}>
-            {/* Core glowing sphere */}
-            <mesh>
-              <sphereGeometry args={[1.2, 32, 32]} />
+            {/* 3D Extruded Shape */}
+            <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+              {p.segments === 2 ? (
+                 <cylinderGeometry args={[0.2, 0.2, 2.5, 16]} />
+              ) : (
+                 <cylinderGeometry args={[1.2, 1.2, 0.5, p.segments]} />
+              )}
               <meshPhysicalMaterial 
                 color={p.color} 
                 emissive={p.color}
                 emissiveIntensity={0.2}
-                transmission={0.9} 
-                opacity={1} 
-                roughness={0}
+                transmission={0.5} 
+                opacity={0.9} 
+                roughness={0.1}
+                metalness={0.3}
                 ior={1.5}
                 transparent={true}
               />
             </mesh>
-            {/* Outline rings */}
-            <mesh rotation={[Math.PI / 2, 0, 0]}>
-              <ringGeometry args={[1.5, 1.55, 32]} />
-              <meshBasicMaterial color={p.color} transparent opacity={0.5} side={THREE.DoubleSide} />
+            {/* Outline wireframe for better shape definition */}
+            <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+              {p.segments === 2 ? (
+                 <cylinderGeometry args={[0.2, 0.2, 2.5, 16]} />
+              ) : (
+                 <cylinderGeometry args={[1.2, 1.2, 0.5, p.segments]} />
+              )}
+              <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.3} />
             </mesh>
-            <mesh rotation={[0, Math.PI / 2, 0]}>
-              <ringGeometry args={[1.5, 1.55, 32]} />
-              <meshBasicMaterial color={p.color} transparent opacity={0.5} side={THREE.DoubleSide} />
-            </mesh>
+            
             {/* Prime Number Text */}
-            <Text position={[0, 0, 1.5]} fontSize={1.5} color="#fff" fontWeight="bold">
+            <Text position={[0, 0, 2]} fontSize={1.2} color="#fff" fontWeight="bold">
               {p.num}
             </Text>
             {/* Prime Description Text */}
-            <Text position={[0, -2.5, 0]} fontSize={0.4} color={p.color} letterSpacing={0.1}>
+            <Text position={[0, -2.2, 0]} fontSize={0.4} color={p.color} letterSpacing={0.1}>
               {p.desc}
             </Text>
           </group>
         </Float>
       ))}
-      <gridHelper args={[30, 30, '#e2e8f0', '#f1f5f9']} position={[0, -4, 0]} />
+      <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[0, -4, 0]} />
     </group>
   );
 };
@@ -341,28 +347,34 @@ export default function GeometriaDimensional() {
 
         {/* SLIDE 1.5: Los Primeros 5 Primos */}
         <Section>
-          <div className="flex flex-col items-center gap-10 bg-white/60 backdrop-blur-sm rounded-[3rem] p-8 lg:p-12 shadow-lg border border-white min-h-[70vh]">
-             <div className="w-full text-center space-y-4 max-w-3xl mx-auto">
-               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 font-bold text-sm uppercase tracking-widest">
+          <div className="flex flex-col lg:flex-row items-center gap-12 bg-slate-900 rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-slate-700 h-auto lg:h-[80vh]">
+             <div className="flex-1 space-y-8 w-full">
+               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-900/50 text-indigo-300 font-bold text-sm uppercase tracking-widest border border-indigo-700/50">
                  Geometría Pura
                </div>
-               <h2 className="text-4xl lg:text-5xl font-bold font-sans text-slate-800">Los 5 Primos Fundamentales</h2>
-               <p className="text-xl text-slate-600 leading-relaxed font-light">
-                 Antes de construir volúmenes complejos, el universo define sus dimensiones base. Estos son los primeros 5 átomos topológicos indivisibles de la creación.
+               <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white">Los 5 Primos Fundamentales</h2>
+               <p className="text-xl text-slate-300 leading-relaxed font-light">
+                 Antes de construir volúmenes complejos, el universo define sus dimensiones base a partir de polígonos irreductibles. 
+               </p>
+               <div className="bg-slate-800/80 border border-slate-700 rounded-2xl p-6">
+                 <div className="text-3xl font-bold font-mono text-white mb-2">Formas Irreductibles</div>
+                 <div className="text-lg text-indigo-300 font-mono">2, 3, 5, 7, 11...</div>
+                 <div className="text-sm text-slate-400 mt-2">Cada número primo genera una forma geométrica pura extruida en 3D basada en su cantidad de lados.</div>
+               </div>
+               <p className="text-indigo-400 flex items-center gap-2 text-sm font-medium">
+                 <ZoomIn className="w-4 h-4" /> Puedes interactuar y rotar los ladrillos fundacionales.
                </p>
              </div>
              
-             <div className="w-full flex-1 min-h-[400px] bg-slate-900/5 rounded-3xl overflow-hidden cursor-move border border-slate-200/50 shadow-inner relative">
-               <Canvas camera={{ position: [0, 2, 18], fov: 45 }}>
-                 <ambientLight intensity={1} />
-                 <directionalLight position={[5, 10, 5]} intensity={2} />
-                 <Environment preset="city" />
+             <div className="flex-1 w-full h-[500px] lg:h-full bg-black/50 rounded-3xl overflow-hidden cursor-move border border-slate-800 shadow-inner">
+               <Canvas camera={{ position: [0, 5, 20], fov: 45 }}>
+                 <color attach="background" args={['#0f172a']} />
+                 <ambientLight intensity={0.6} />
+                 <directionalLight position={[10, 10, 10]} intensity={1.5} color="#e0e7ff" />
+                 <spotLight position={[-10, -10, -10]} intensity={1} color="#c7d2fe" />
                  <PrimosFundamentales3D />
-                 <OrbitControls enableZoom={true} minDistance={10} maxDistance={30} />
+                 <OrbitControls enableZoom={true} minDistance={10} maxDistance={40} autoRotate autoRotateSpeed={0.5} />
                </Canvas>
-               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400 flex items-center gap-2 text-sm font-medium bg-white/80 px-4 py-2 rounded-full shadow-sm backdrop-blur-md">
-                 <ZoomIn className="w-4 h-4" /> Interactúa con los vectores de frecuencia base
-               </div>
              </div>
           </div>
         </Section>
