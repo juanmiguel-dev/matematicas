@@ -6,6 +6,7 @@ import Lexicon from './pages/Lexicon';
 import CodigoMaquina from './pages/CodigoMaquina';
 import GematriaVibracional from './pages/GematriaVibracional';
 import PVsNP from './pages/PVsNP';
+import GeometriaDimensional from './pages/GeometriaDimensional';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/codigo-maquina" element={<CodigoMaquina />} />
         <Route path="/gematria-vibracional" element={<GematriaVibracional />} />
         <Route path="/p-vs-np" element={<PVsNP />} />
+        <Route path="/geometria-dimensional" element={<GeometriaDimensional />} />
       </Routes>
     </BrowserRouter>
   );
