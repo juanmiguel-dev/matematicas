@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, Split, Settings, Eye, Network, Scale, Sparkles } from 'lucide-react';
+import { ArrowLeft, Split, Settings, Eye, Network, Scale, Sparkles, Activity } from 'lucide-react';
 
 const Section = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
   <section className={`min-h-screen flex flex-col justify-center relative py-20 px-6 ${className}`}>

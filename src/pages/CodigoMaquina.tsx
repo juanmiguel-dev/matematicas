@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowLeft, Cpu, Flower2, Hand, Activity, Infinity, CircleDashed } from 'lucide-react';
+import { ArrowLeft, Cpu, Flower2, Hand, Activity, Infinity as InfinityIcon, CircleDashed } from 'lucide-react';
 
 // Reusable Section Component
 const Section = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
@@ -195,7 +195,7 @@ export default function CodigoMaquina() {
                 Expansión (Â) <Activity className="w-4 h-4" />
               </div>
               <div className="absolute bottom-10 left-10 text-teal-400 flex items-center gap-2">
-                <Infinity className="w-4 h-4" /> Vorticidad (Û)
+                <InfinityIcon className="w-4 h-4" /> Vorticidad (Û)
               </div>
               
               {/* Psi Center */}

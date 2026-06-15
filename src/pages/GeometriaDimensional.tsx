@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Box, Hexagon, Layers, ZoomIn } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, Float, Edges, Text } from '@react-three/drei';
+import { OrbitControls, Environment, Float, Edges, Text, Line } from '@react-three/drei';
 import * as THREE from 'three';
 
 const Section = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
@@ -165,6 +165,68 @@ const Hipercubo6D = () => {
   return <group ref={group} scale={0.6}>{blocks}</group>;
 };
 
+// 4. Espiral Aurea 3D (Geometría de Reposo vs Corriente de Intención)
+const EspiralAurea3D = () => {
+  const group = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (group.current) {
+      group.current.rotation.y = state.clock.elapsedTime * 0.05;
+    }
+  });
+
+  const spiralPoints = [];
+  const bluePoints = [];
+  const numPoints = 300;
+  
+  // Golden spiral in XZ plane
+  const a = 0.2;
+  const b = 0.3063489;
+  for (let i = 0; i < numPoints; i++) {
+    const theta = (i / numPoints) * Math.PI * 8; // 4 full turns
+    const r = a * Math.exp(b * theta);
+    const x = r * Math.cos(theta);
+    const z = r * Math.sin(theta);
+    spiralPoints.push(new THREE.Vector3(x, 0, z));
+  }
+
+  // Blue curve going up in Y representing Intention Current
+  for (let i = 0; i < 50; i++) {
+    const t = i / 5;
+    const y = Math.pow(t, 1.5);
+    const x = -t * 2;
+    const z = t;
+    bluePoints.push(new THREE.Vector3(x, y, z));
+  }
+
+  return (
+    <group ref={group} position={[0, -4, 0]}>
+      {/* 3D Grid planes to simulate the blueprint aesthetic */}
+      <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[0, 0, 0]} />
+      <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[0, 15, -15]} rotation={[Math.PI/2, 0, 0]} />
+      <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[-15, 15, 0]} rotation={[0, 0, Math.PI/2]} />
+      
+      {/* Golden Spiral */}
+      <Line points={spiralPoints} color="#fbbf24" lineWidth={3} />
+      
+      {/* Intention Current Curve */}
+      <Line points={bluePoints} color="#0ea5e9" lineWidth={5} />
+      <Line points={[new THREE.Vector3(0,0,0), new THREE.Vector3(0, 15, 0)]} color="#0ea5e9" lineWidth={1} dashed />
+      
+      {/* Vector arrows for axes */}
+      <Line points={[new THREE.Vector3(0,0,0), new THREE.Vector3(15,0,0)]} color="#fff" lineWidth={2} />
+      <Line points={[new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,15)]} color="#fff" lineWidth={2} />
+      <Line points={[new THREE.Vector3(0,0,0), new THREE.Vector3(0,18,0)]} color="#fff" lineWidth={2} />
+      
+      {/* Labels */}
+      <Text position={[0, -1.5, 0]} color="#fff" fontSize={1}>0</Text>
+      <Text position={[0, -3, 0]} color="#38bdf8" fontSize={1.2} rotation={[0, 0, 0]}>Intention Current J_s</Text>
+      <Text position={[12, 0.5, 0]} color="#fbbf24" fontSize={1} rotation={[-Math.PI/2, 0, 0]}>Geometría de Reposo</Text>
+      <Text position={[3, 0.2, 3]} color="#fbbf24" fontSize={0.8} rotation={[-Math.PI/2, 0, 0]}>Φ²</Text>
+    </group>
+  );
+};
+
 
 export default function GeometriaDimensional() {
   useEffect(() => {
@@ -310,6 +372,38 @@ export default function GeometriaDimensional() {
                  <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#fbbf24" />
                  <Hipercubo6D />
                  <OrbitControls autoRotate autoRotateSpeed={0.8} enableZoom={true} />
+               </Canvas>
+             </div>
+          </div>
+        </Section>
+
+        {/* SLIDE 5: Espiral Aurea (Geometria de Reposo vs Intention Current) */}
+        <Section>
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 bg-[#0f172a] rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-slate-700 h-auto lg:h-[80vh]">
+             <div className="flex-1 space-y-8 w-full">
+               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-900/50 text-teal-300 font-bold text-sm uppercase tracking-widest border border-teal-700/50">
+                 Fase de Reposo
+               </div>
+               <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white">Espiral Áurea 3D</h2>
+               <p className="text-xl text-slate-300 leading-relaxed font-light">
+                 Visualización del gráfico tridimensional donde la espiral áurea ($Φ$) yace en el plano de la Geometría de Reposo.
+               </p>
+               <div className="bg-slate-800/80 border border-slate-700 rounded-2xl p-6">
+                 <div className="text-3xl font-bold font-serif italic text-amber-400 mb-2">J<sub className="text-lg">s</sub> = 0</div>
+                 <div className="text-lg text-teal-300 font-mono">Corriente de Intención</div>
+                 <div className="text-sm text-slate-400 mt-2">La curva azul representa la irrupción de la intención creativa que rompe el reposo perfecto (P=NP).</div>
+               </div>
+               <p className="text-teal-400 flex items-center gap-2 text-sm font-medium">
+                 <ZoomIn className="w-4 h-4" /> La gráfica rota en 3D para revelar las proyecciones XYZ.
+               </p>
+             </div>
+             
+             <div className="flex-1 w-full h-[500px] lg:h-full bg-[#111827] rounded-3xl overflow-hidden cursor-move border border-slate-700 shadow-inner">
+               <Canvas camera={{ position: [20, 15, 25], fov: 45 }}>
+                 <color attach="background" args={['#0b101e']} />
+                 <ambientLight intensity={0.8} />
+                 <EspiralAurea3D />
+                 <OrbitControls autoRotate autoRotateSpeed={0.3} enableZoom={true} />
                </Canvas>
              </div>
           </div>
