@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Sparkles, BrainCircuit, ArrowRight, Binary, BookOpen, Cpu } from 'lucide-react';
+import { Sparkles, BrainCircuit, ArrowRight, Binary, BookOpen, Cpu, Radio } from 'lucide-react';
 
 export default function Matematikas() {
   return (
@@ -56,7 +56,7 @@ export default function Matematikas() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Taller Card */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -147,6 +147,38 @@ export default function Matematikas() {
                   
                   <div className="flex items-center text-teal-400 font-medium group-hover:gap-2 transition-all mt-auto">
                     <span>Iniciar secuencia</span>
+                    <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* Gematria Vibracional Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <Link 
+                to="/gematria-vibracional" 
+                className="group block relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 overflow-hidden h-full"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 to-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/20 mb-6 group-hover:scale-110 transition-transform duration-500">
+                    <Radio className="w-6 h-6 text-white" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
+                    Gematría Vibracional
+                  </h3>
+                  <p className="text-slate-400 mb-8 line-clamp-3">
+                    Los números no son invenciones, son frecuencias fundamentales. Explora la Trilogía del Sistema y el hardware detrás de la creación.
+                  </p>
+                  
+                  <div className="flex items-center text-blue-400 font-medium group-hover:gap-2 transition-all mt-auto">
+                    <span>Sintonizar frecuencia</span>
                     <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   </div>
                 </div>

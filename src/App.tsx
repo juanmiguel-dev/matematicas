@@ -4,6 +4,7 @@ import Matematikas from './pages/Matematikas';
 import Taller from './pages/Taller';
 import Lexicon from './pages/Lexicon';
 import CodigoMaquina from './pages/CodigoMaquina';
+import GematriaVibracional from './pages/GematriaVibracional';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/taller" element={<Taller />} />
         <Route path="/lexicon" element={<Lexicon />} />
         <Route path="/codigo-maquina" element={<CodigoMaquina />} />
+        <Route path="/gematria-vibracional" element={<GematriaVibracional />} />
       </Routes>
     </BrowserRouter>
   );
