@@ -21,6 +21,11 @@ export default function Matematikas() {
             MATEMATIKAS
           </span>
         </div>
+        <div className="flex items-center gap-4">
+          <Link to="/radiomatika" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-sm font-bold text-indigo-300">
+            <Radio className="w-4 h-4" /> RADIOMATIKA
+          </Link>
+        </div>
       </header>
 
       {/* Hero Section */}
