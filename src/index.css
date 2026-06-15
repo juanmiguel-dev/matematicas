@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cinzel", "Playfair Display", serif;
+  --font-hand: "Patrick Hand", "Architects Daughter", cursive;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-primary: #1e3a8a;
+  --color-accent: #f59e0b;
+}
+
+@layer utilities {
+  /* Chalk Slate Background Texture */
+  .bg-slate-chalkboard {
+    background-color: #0d1622;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(22, 38, 59, 0.5) 0%, rgba(13, 22, 34, 1) 100%),
+      radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 60px 60px;
+    position: relative;
+  }
+
+  .bg-slate-chalkboard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.04;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3联%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Chalk Neon Glow and Textures */
+  .chalk-glow-red {
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.75));
+  }
+  .chalk-glow-blue {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.75));
+  }
+  .chalk-glow-green {
+    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.75));
+  }
+  .chalk-glow-purple {
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.75));
+  }
+  .chalk-glow-yellow {
+    filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.75));
+  }
+  .chalk-glow-teal {
+    filter: drop-shadow(0 0 8px rgba(20, 184, 166, 0.75));
+  }
+  .chalk-glow-rainbow {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+  }
+
+  /* Custom Chalky Borders and Vines helper */
+  .chalk-dashed {
+    stroke-dasharray: 6 4;
+  }
+
+  /* Shaking / Floating Animations for Magical Vibe */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+  }
+  
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(-1.5deg); }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .animate-float-slow {
+    animation: float-slow 7s ease-in-out infinite;
+  }
+
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d1622;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1f2d3d;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2e3d52;
+  }
+}

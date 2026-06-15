@@ -1,0 +1,6 @@
+{
+  "name": "El Taller del Arquitecto Cósmico",
+  "description": "Una hermosa experiencia interactiva sobre el secreto detrás de cada número del universo y los números primos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
