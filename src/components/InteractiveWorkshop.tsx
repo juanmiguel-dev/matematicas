@@ -138,7 +138,7 @@ export const InteractiveWorkshop: React.FC = () => {
           El Taller del Arquitecto
         </h2>
         <p className="text-slate-500 text-center text-base mt-2 max-w-xl">
-          Manipulá las joyas primas, forjá las llaves de ADN de cada número o filtrá la arena del tiempo.
+          ¡Jugá con las joyas matemáticas, descubrí el secreto adentro de cada número y encontrá los primos escondidos con el colador mágico!
         </p>
 
         {/* Tabs */}
