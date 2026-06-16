@@ -279,18 +279,70 @@ const EspiralAurea3D = () => {
       
       {/* Intention Current Curve */}
       <Line points={bluePoints} color="#0ea5e9" lineWidth={5} />
-      <Line points={[new THREE.Vector3(0,0,0), new THREE.Vector3(0, 15, 0)]} color="#0ea5e9" lineWidth={1} dashed />
+      <Line points={bluePoints} color="#38bdf8" lineWidth={2} dashed dashSize={0.5} gapSize={0.2} />
       
-      {/* Vector arrows for axes */}
-      <Line points={[new THREE.Vector3(0,0,0), new THREE.Vector3(15,0,0)]} color="#fff" lineWidth={2} />
-      <Line points={[new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,15)]} color="#fff" lineWidth={2} />
-      <Line points={[new THREE.Vector3(0,0,0), new THREE.Vector3(0,18,0)]} color="#fff" lineWidth={2} />
-      
-      {/* Labels */}
+      {/* Central Core */}
+      <mesh position={[0, -5, 0]}>
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshStandardMaterial color="#fff" emissive="#fbbf24" emissiveIntensity={2} />
+      </mesh>
+
+      {/* Math Labels */}
       <Text position={[0, -1.5, 0]} color="#fff" fontSize={1}>0</Text>
       <Text position={[0, -3, 0]} color="#38bdf8" fontSize={1.2} rotation={[0, 0, 0]}>Intention Current J_s</Text>
       <Text position={[12, 0.5, 0]} color="#fbbf24" fontSize={1} rotation={[-Math.PI/2, 0, 0]}>Geometría de Reposo</Text>
       <Text position={[3, 0.2, 3]} color="#fbbf24" fontSize={0.8} rotation={[-Math.PI/2, 0, 0]}>Φ²</Text>
+    </group>
+  );
+};
+
+// 5. Gema Pura (Crisoprasa Astral) - 19
+const CrisoprasaAstralGema = () => {
+  const group = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (group.current) {
+      group.current.rotation.y = state.clock.elapsedTime * 0.2;
+    }
+  });
+
+  return (
+    <group ref={group}>
+      <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
+        <mesh scale={[1, 1.2, 1]}>
+          <icosahedronGeometry args={[3, 0]} />
+          <meshPhysicalMaterial 
+            color="#10b981"
+            emissive="#064e3b"
+            emissiveIntensity={0.3}
+            transmission={0.9}
+            opacity={1}
+            roughness={0}
+            metalness={0.1}
+            ior={2.4}
+            thickness={1}
+            side={THREE.DoubleSide}
+            transparent
+          />
+        </mesh>
+        <mesh scale={[0.8, 0.96, 0.8]}>
+          <icosahedronGeometry args={[3, 0]} />
+          <meshPhysicalMaterial 
+            color="#34d399"
+            emissive="#059669"
+            emissiveIntensity={0.6}
+            transmission={0.5}
+            roughness={0}
+            metalness={0.5}
+            transparent
+            opacity={0.8}
+          />
+        </mesh>
+        <mesh scale={[1.02, 1.22, 1.02]}>
+          <icosahedronGeometry args={[3, 0]} />
+          <meshBasicMaterial color="#6ee7b7" wireframe transparent opacity={0.3} />
+        </mesh>
+      </Float>
     </group>
   );
 };
@@ -474,6 +526,41 @@ export default function GeometriaDimensional() {
                  <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#fbbf24" />
                  <Hipercubo6D />
                  <OrbitControls autoRotate autoRotateSpeed={0.8} enableZoom={true} />
+               </Canvas>
+             </div>
+          </div>
+        </Section>
+
+        {/* SLIDE 4.5: GEMAS */}
+        <Section className="items-center">
+          <div className="flex flex-col lg:flex-row items-center gap-12 bg-emerald-950/40 backdrop-blur-md rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-emerald-800 h-auto lg:h-[80vh] w-full">
+             <div className="flex-1 space-y-8 w-full z-10">
+               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-900/80 text-emerald-300 font-bold text-sm uppercase tracking-widest border border-emerald-500/50">
+                 Gemas
+               </div>
+               <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white">Gema Pura (Crisoprasa Astral)</h2>
+               <p className="text-xl text-emerald-100/80 leading-relaxed font-light">
+                 El número 19 es indivisible. Es una de las gemas básicas del Arquitecto. Una estructura pura sin división.
+               </p>
+               <div className="bg-emerald-900/50 border border-emerald-700/50 rounded-2xl p-6">
+                 <div className="text-3xl font-bold font-mono text-emerald-400 mb-2">Análisis: Singular</div>
+                 <div className="text-lg text-emerald-200 font-mono">19 = Crisoprasa Astral</div>
+                 <div className="text-sm text-emerald-300/70 mt-2">No-division structure found. Irreducible.</div>
+               </div>
+               <p className="text-emerald-400 flex items-center gap-2 text-sm font-medium">
+                 <ZoomIn className="w-4 h-4" /> Inspecciona la gema pura en el espacio.
+               </p>
+             </div>
+             
+             <div className="flex-1 w-full h-[500px] lg:h-full bg-black/40 rounded-3xl overflow-hidden cursor-move border border-emerald-900/50 shadow-inner relative">
+               <Canvas camera={{ position: [0, 0, 12], fov: 45 }}>
+                 <color attach="background" args={['#022c22']} />
+                 <ambientLight intensity={0.5} />
+                 <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} intensity={2} color="#6ee7b7" />
+                 <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#10b981" />
+                 <Environment preset="city" />
+                 <CrisoprasaAstralGema />
+                 <OrbitControls autoRotate autoRotateSpeed={1} enableZoom={true} />
                </Canvas>
              </div>
           </div>
