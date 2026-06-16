@@ -790,11 +790,10 @@ export default function GeometriaDimensional() {
               <div className="flex flex-col bg-emerald-900/40 backdrop-blur-md rounded-[3rem] p-8 lg:p-10 shadow-2xl border border-emerald-700/50 h-auto lg:h-[800px]">
                 <div className="space-y-6 z-10 flex-shrink-0">
                   <h3 className="text-3xl font-bold font-sans text-white">Número 19</h3>
-                  <p className="text-lg text-emerald-100/80 leading-relaxed font-light">
-                    Poliedro fundamental de 19 unidades. Estructura pura sin factores divisibles.
-                  </p>
                   <div className="bg-emerald-900/50 border border-emerald-700/50 rounded-2xl p-5">
-                    <div className="text-xl font-bold font-mono text-emerald-400 mb-1">Análisis Topológico</div>
+                    <p className="text-lg text-emerald-100/80 leading-relaxed font-light mb-4">
+                      Poliedro fundamental de 19 unidades. Estructura pura sin factores divisibles.
+                    </p>
                     <div className="text-sm text-emerald-200 font-mono">Geometría: 19 lados</div>
                     <div className="text-xs text-emerald-300/70 mt-1">Single 19-polygon unit - No sub-units.</div>
                   </div>
@@ -817,11 +816,10 @@ export default function GeometriaDimensional() {
               <div className="flex flex-col bg-sky-900/40 backdrop-blur-md rounded-[3rem] p-8 lg:p-10 shadow-2xl border border-sky-700/50 h-auto lg:h-[800px]">
                 <div className="space-y-6 z-10 flex-shrink-0">
                   <h3 className="text-3xl font-bold font-sans text-white">Número 29</h3>
-                  <p className="text-lg text-sky-100/80 leading-relaxed font-light">
-                    Poliedro fundamental de 29 unidades. Orden de magnitud superior sin divisores.
-                  </p>
                   <div className="bg-sky-900/50 border border-sky-700/50 rounded-2xl p-5">
-                    <div className="text-xl font-bold font-mono text-sky-400 mb-1">Análisis Topológico</div>
+                    <p className="text-lg text-sky-100/80 leading-relaxed font-light mb-4">
+                      Poliedro fundamental de 29 unidades. Orden de magnitud superior sin divisores.
+                    </p>
                     <div className="text-sm text-sky-200 font-mono">Geometría: 29 lados</div>
                     <div className="text-xs text-sky-300/70 mt-1">Single 29-polygon unit - No sub-units.</div>
                   </div>
