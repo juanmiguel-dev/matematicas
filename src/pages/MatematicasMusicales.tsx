@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, Music, Waveform } from 'lucide-react';
+import { ArrowLeft, Music, Activity } from 'lucide-react';
 
 const Section = ({ id, children, className = "" }: { id?: string, children: React.ReactNode, className?: string }) => (
   <section id={id} className={`min-h-screen flex flex-col justify-center relative py-20 px-6 ${className}`}>
@@ -105,7 +105,7 @@ export default function MatematicasMusicales() {
             className="relative z-10 max-w-5xl"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-sm font-medium text-fuchsia-300 mb-8">
-              <Waveform className="w-4 h-4" />
+              <Activity className="w-4 h-4" />
               <span>La Arquitectura Oculta</span>
             </div>
             
