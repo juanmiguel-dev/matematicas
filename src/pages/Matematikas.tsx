@@ -33,7 +33,7 @@ export default function Matematikas() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
           {/* Title Header (Spans 2 columns on Desktop) */}
-          <div className="lg:col-span-2 flex flex-col justify-center text-center lg:text-left pr-0 lg:pr-12 mb-8 lg:mb-0">
+          <div className="lg:col-span-2 flex flex-col justify-center items-center text-center mb-8 lg:mb-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ export default function Matematikas() {
                   belleza oculta
                 </span>
               </h1>
-              <p className="text-lg text-slate-400 leading-relaxed max-w-md mx-auto lg:mx-0">
+              <p className="text-lg text-slate-400 leading-relaxed max-w-md mx-auto">
                 Bienvenido a MATEMATIKAS, un espacio interactivo para revelar los secretos de los números, geometría y lógica.
               </p>
             </motion.div>
