@@ -12,12 +12,14 @@ const Section = ({ id, children, className = "" }: { id?: string, children: Reac
 export default function MatematicasMusicales() {
   const [activeSection, setActiveSection] = useState('hero');
   const [monochordRatio, setMonochordRatio] = useState<number>(1);
+  const [activeHarmonics, setActiveHarmonics] = useState<boolean[]>([true, false, false, false]);
+  const [interferenceRatio, setInterferenceRatio] = useState<number>(1.5);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
-      const sections = ['hero', 'monocordio', 'fibonacci', 'cimatica'];
+      const sections = ['hero', 'monocordio', 'serie-armonica', 'coma', 'fibonacci', 'interferencia', 'cimatica'];
       let current = 'hero';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -71,7 +73,10 @@ export default function MatematicasMusicales() {
           {[
             { id: 'hero', label: 'Inicio' },
             { id: 'monocordio', label: 'Pitágoras' },
+            { id: 'serie-armonica', label: 'Armónicos' },
+            { id: 'coma', label: 'Coma' },
             { id: 'fibonacci', label: 'Áurea' },
+            { id: 'interferencia', label: 'Interferencia' },
             { id: 'cimatica', label: 'Cimática' }
           ].map((item) => (
             <button 
@@ -226,6 +231,151 @@ export default function MatematicasMusicales() {
           </div>
         </Section>
 
+        {/* SLIDE 2B: La Serie Armonica */}
+        <Section id="serie-armonica">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex-1 space-y-6"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold font-serif">La Serie Armónica <br/><span className="text-slate-400 italic font-light">Los Sobretonos</span></h2>
+              <p className="text-lg text-slate-400 leading-relaxed">
+                Cuando tocas una sola nota, el universo no genera una sola frecuencia. Se desata una serie matemática infinita: la fundamental ($f$), el doble ($2f$), el triple ($3f$).
+              </p>
+              <p className="text-lg text-slate-400 leading-relaxed">
+                Esta síntesis aditiva es lo que le da "color" o timbre a los instrumentos. Enciende los armónicos para ver cómo se construye una onda compleja.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex-1 w-full bg-[#11131a] rounded-3xl p-8 border border-white/5 relative shadow-2xl"
+            >
+              <div className="space-y-4 mb-8">
+                {['Fundamental (f)', '2º Armónico (2f)', '3º Armónico (3f)', '4º Armónico (4f)'].map((label, idx) => (
+                  <button 
+                    key={label}
+                    onClick={() => {
+                      const newHarmonics = [...activeHarmonics];
+                      newHarmonics[idx] = !newHarmonics[idx];
+                      if (newHarmonics.every(h => !h)) newHarmonics[0] = true; // prevent all off
+                      setActiveHarmonics(newHarmonics);
+                    }}
+                    className={`w-full text-left px-6 py-3 rounded-xl border transition-all ${
+                      activeHarmonics[idx] ? 'bg-fuchsia-500/20 border-fuchsia-500/50 text-white' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="h-48 relative overflow-hidden border border-white/5 rounded-2xl bg-slate-950/50 flex items-center justify-center">
+                <svg viewBox="0 0 400 100" className="w-full h-full stroke-fuchsia-400 fill-none" preserveAspectRatio="none">
+                  {activeHarmonics.map((active, idx) => active && (
+                    <motion.path 
+                      key={idx}
+                      d={`M0,50 Q${50/(idx+1)},0 ${100/(idx+1)},50 T${200/(idx+1)},50 T${300/(idx+1)},50 T${400/(idx+1)},50 T${500/(idx+1)},50 T${600/(idx+1)},50 T${700/(idx+1)},50 T${800/(idx+1)},50 T${900/(idx+1)},50 T${1000/(idx+1)},50 T${1100/(idx+1)},50 T${1200/(idx+1)},50 T${1300/(idx+1)},50 T${1400/(idx+1)},50 T${1500/(idx+1)},50 T${1600/(idx+1)},50`}
+                      strokeWidth="1" 
+                      className="opacity-30 mix-blend-screen"
+                      animate={{ 
+                        d: [
+                          `M0,50 Q${50/(idx+1)},0 ${100/(idx+1)},50 T${200/(idx+1)},50 T${300/(idx+1)},50 T${400/(idx+1)},50 T${500/(idx+1)},50 T${600/(idx+1)},50 T${700/(idx+1)},50 T${800/(idx+1)},50 T${900/(idx+1)},50 T${1000/(idx+1)},50 T${1100/(idx+1)},50 T${1200/(idx+1)},50 T${1300/(idx+1)},50 T${1400/(idx+1)},50 T${1500/(idx+1)},50 T${1600/(idx+1)},50`,
+                          `M0,50 Q${50/(idx+1)},100 ${100/(idx+1)},50 T${200/(idx+1)},50 T${300/(idx+1)},50 T${400/(idx+1)},50 T${500/(idx+1)},50 T${600/(idx+1)},50 T${700/(idx+1)},50 T${800/(idx+1)},50 T${900/(idx+1)},50 T${1000/(idx+1)},50 T${1100/(idx+1)},50 T${1200/(idx+1)},50 T${1300/(idx+1)},50 T${1400/(idx+1)},50 T${1500/(idx+1)},50 T${1600/(idx+1)},50`
+                        ] 
+                      }}
+                      transition={{ repeat: Infinity, duration: 1/(idx+1), repeatType: "mirror", ease: "easeInOut" }} 
+                    />
+                  ))}
+                  
+                  {activeHarmonics.filter(Boolean).length > 1 && (
+                     <motion.path 
+                       d="M0,50 C20,10 40,90 60,30 C80,-10 100,110 120,40 C140,0 160,100 180,60 C200,10 220,90 240,30 C260,-10 280,110 300,40 C320,0 340,100 360,60 C380,10 400,90 400,50"
+                       strokeWidth="2" 
+                       className="stroke-white"
+                       animate={{ 
+                         d: [
+                           "M0,50 C20,10 40,90 60,30 C80,-10 100,110 120,40 C140,0 160,100 180,60 C200,10 220,90 240,30 C260,-10 280,110 300,40 C320,0 340,100 360,60 C380,10 400,90 400,50",
+                           "M0,50 C20,90 40,10 60,70 C80,110 100,-10 120,60 C140,100 160,0 180,40 C200,90 220,10 240,70 C260,110 280,-10 300,60 C320,100 340,0 360,40 C380,90 400,10 400,50"
+                         ] 
+                       }}
+                       transition={{ repeat: Infinity, duration: 2, repeatType: "mirror", ease: "easeInOut" }} 
+                     />
+                  )}
+                </svg>
+              </div>
+            </motion.div>
+          </div>
+        </Section>
+
+        {/* SLIDE 2C: La Coma Pitagorica */}
+        <Section id="coma" className="items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6">La Coma Pitagórica <br/><span className="text-slate-400 italic font-light">El Defecto Perfecto</span></h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Si apilas 12 quintas perfectas, no encajan exactamente con 7 octavas. Hay una minúscula diferencia matemática: <span className="font-mono text-fuchsia-400">(3/2)¹² ≠ 2⁷</span>.
+              Este desajuste obligó a la humanidad a "desafinar" deliberadamente el piano moderno usando números irracionales.
+            </p>
+          </motion.div>
+
+          <div className="relative w-full max-w-md mx-auto aspect-square flex items-center justify-center bg-[#11131a] rounded-full border border-white/5 shadow-[0_0_50px_rgba(192,132,252,0.1)]">
+            <motion.svg viewBox="0 0 200 200" className="w-full h-full overflow-visible p-8">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 4" />
+              
+              <motion.path 
+                d="M100,20 A80,80 0 0,1 180,100 A80,80 0 0,1 100,180 A80,80 0 0,1 20,100 A80,80 0 0,1 100,22" 
+                fill="none" 
+                stroke="url(#spiralGrad)" 
+                strokeWidth="3"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 4, ease: "easeInOut" }}
+              />
+              <defs>
+                <linearGradient id="spiralGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#c084fc" />
+                  <stop offset="100%" stopColor="#f472b6" />
+                </linearGradient>
+              </defs>
+              
+              <motion.circle 
+                cx="100" cy="21" r="3" fill="#f472b6"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 4 }}
+              />
+              <motion.circle 
+                cx="100" cy="20" r="2" fill="white"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 4.2 }}
+              />
+              <motion.text 
+                x="100" y="5" fill="#f472b6" fontSize="8" textAnchor="middle" className="font-bold"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 4.5 }}
+              >
+                Coma Pitagórica
+              </motion.text>
+            </motion.svg>
+          </div>
+        </Section>
+
         {/* SLIDE 3: La Proporcion Aurea */}
         <Section id="fibonacci">
           <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
@@ -296,6 +446,84 @@ export default function MatematicasMusicales() {
                 <path d="M0,210 L398,210" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="4 4" />
                 <text x="200" y="230" textAnchor="middle" fill="#cbd5e1" fontSize="14" className="font-serif italic">1 Octava = 13 Teclas (8 Blancas + 5 Negras)</text>
               </svg>
+            </motion.div>
+          </div>
+        </Section>
+
+        {/* SLIDE 3B: Interferencia */}
+        <Section id="interferencia">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex-1 space-y-6"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold font-serif">Consonancia y Disonancia <br/><span className="text-slate-400 italic font-light">Matemática de la Interferencia</span></h2>
+              <p className="text-lg text-slate-400 leading-relaxed">
+                ¿Por qué un intervalo suena "bien" o "mal" al oído? Es pura física geométrica.
+              </p>
+              <p className="text-lg text-slate-400 leading-relaxed">
+                Ratios matemáticos simples (como 3:2) hacen que las ondas se alineen periódicamente (consonancia). Ratios complejos causan que las ondas choquen desordenadamente, creando "batidos" o disonancia.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex-1 w-full bg-[#11131a] rounded-3xl p-8 border border-white/5 relative shadow-2xl"
+            >
+              <div className="mb-8">
+                <input 
+                  type="range" 
+                  min="1" max="2" step="0.01" 
+                  value={interferenceRatio} 
+                  onChange={(e) => setInterferenceRatio(parseFloat(e.target.value))}
+                  className="w-full accent-fuchsia-500 cursor-pointer"
+                />
+                <div className="flex justify-between mt-2 text-xs font-mono text-slate-500">
+                  <span>1:1</span>
+                  <span className="text-fuchsia-400 font-bold text-lg">Ratio Actual: {interferenceRatio.toFixed(2)}</span>
+                  <span>1:2</span>
+                </div>
+              </div>
+
+              <div className="h-48 relative overflow-hidden border border-white/5 rounded-2xl bg-slate-950/50 flex flex-col justify-center gap-2 p-2">
+                {/* Wave 1 (Fixed Fundamental) */}
+                <svg viewBox="0 0 400 40" className="w-full h-12 stroke-indigo-400/50 fill-none" preserveAspectRatio="none">
+                  <motion.path 
+                    d="M0,20 Q25,0 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 T350,20 T400,20"
+                    strokeWidth="2" 
+                    animate={{ d: ["M0,20 Q25,0 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 T350,20 T400,20", "M0,20 Q25,40 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 T350,20 T400,20"] }}
+                    transition={{ repeat: Infinity, duration: 1, repeatType: "mirror", ease: "easeInOut" }} 
+                  />
+                </svg>
+                {/* Wave 2 (Variable) */}
+                <svg viewBox="0 0 400 40" className="w-full h-12 stroke-fuchsia-400/50 fill-none" preserveAspectRatio="none">
+                  <motion.path 
+                    d={`M0,20 Q${25/interferenceRatio},0 ${50/interferenceRatio},20 T${100/interferenceRatio},20 T${150/interferenceRatio},20 T${200/interferenceRatio},20 T${250/interferenceRatio},20 T${300/interferenceRatio},20 T${350/interferenceRatio},20 T${400/interferenceRatio},20 T${450/interferenceRatio},20 T${500/interferenceRatio},20 T${550/interferenceRatio},20 T${600/interferenceRatio},20 T${650/interferenceRatio},20 T${700/interferenceRatio},20 T${750/interferenceRatio},20 T${800/interferenceRatio},20`}
+                    strokeWidth="2" 
+                    animate={{ 
+                      d: [
+                        `M0,20 Q${25/interferenceRatio},0 ${50/interferenceRatio},20 T${100/interferenceRatio},20 T${150/interferenceRatio},20 T${200/interferenceRatio},20 T${250/interferenceRatio},20 T${300/interferenceRatio},20 T${350/interferenceRatio},20 T${400/interferenceRatio},20 T${450/interferenceRatio},20 T${500/interferenceRatio},20 T${550/interferenceRatio},20 T${600/interferenceRatio},20 T${650/interferenceRatio},20 T${700/interferenceRatio},20 T${750/interferenceRatio},20 T${800/interferenceRatio},20`,
+                        `M0,20 Q${25/interferenceRatio},40 ${50/interferenceRatio},20 T${100/interferenceRatio},20 T${150/interferenceRatio},20 T${200/interferenceRatio},20 T${250/interferenceRatio},20 T${300/interferenceRatio},20 T${350/interferenceRatio},20 T${400/interferenceRatio},20 T${450/interferenceRatio},20 T${500/interferenceRatio},20 T${550/interferenceRatio},20 T${600/interferenceRatio},20 T${650/interferenceRatio},20 T${700/interferenceRatio},20 T${750/interferenceRatio},20 T${800/interferenceRatio},20`
+                      ] 
+                    }}
+                    transition={{ repeat: Infinity, duration: 1/interferenceRatio, repeatType: "mirror", ease: "easeInOut" }} 
+                  />
+                </svg>
+                {/* Visual indicator of alignment (Beat) */}
+                <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-50 mix-blend-screen">
+                  <div 
+                    className="w-full h-full transition-opacity duration-300"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(217,70,239,0.2) 0%, rgba(217,70,239,0) 70%)',
+                      opacity: Math.abs(interferenceRatio - 1.5) < 0.05 || Math.abs(interferenceRatio - 1.25) < 0.05 ? 0.1 : 0.8
+                    }}
+                  />
+                </div>
+              </div>
             </motion.div>
           </div>
         </Section>
