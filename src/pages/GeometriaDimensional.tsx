@@ -242,32 +242,57 @@ const FundamentalCard = ({ num, color, desc, segments, name }: { num: number, co
            <ambientLight intensity={0.8} />
            <spotLight position={[10, 10, 10]} intensity={2} color="#fff" penumbra={1} />
            <Float speed={2} rotationIntensity={1.5} floatIntensity={1.5}>
-              <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-                {segments === 2 ? (
-                   <cylinderGeometry args={[0.3, 0.3, 3, 16]} />
-                ) : (
-                   <cylinderGeometry args={[1.8, 1.8, 0.6, segments]} />
-                )}
-                <meshPhysicalMaterial 
-                  color={color} 
-                  emissive={color}
-                  emissiveIntensity={0.3}
-                  transmission={0.6} 
-                  opacity={0.9} 
-                  roughness={0.1}
-                  metalness={0.4}
-                  ior={1.5}
-                  transparent={true}
-                />
-              </mesh>
-              <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-                {segments === 2 ? (
-                   <cylinderGeometry args={[0.3, 0.3, 3, 16]} />
-                ) : (
-                   <cylinderGeometry args={[1.8, 1.8, 0.6, segments]} />
-                )}
-                <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.4} />
-              </mesh>
+              {segments >= 5 ? (
+                <group rotation={[Math.PI / 6, 0, 0]}>
+                  <mesh>
+                    <sphereGeometry args={[1.8, segments, 4]} />
+                    <meshPhysicalMaterial 
+                      color={color} emissive={color} emissiveIntensity={0.4}
+                      transmission={0.8} opacity={1} roughness={0} metalness={0.2} ior={2.2} thickness={1.5} side={THREE.DoubleSide} transparent
+                    />
+                  </mesh>
+                  <mesh scale={0.7}>
+                    <sphereGeometry args={[1.8, segments, 3]} />
+                    <meshPhysicalMaterial 
+                      color="#ffffff" emissive={color} emissiveIntensity={1}
+                      transmission={0.2} roughness={0} metalness={0.8} transparent opacity={0.9}
+                    />
+                  </mesh>
+                  <mesh scale={1.05}>
+                    <sphereGeometry args={[1.8, segments, 4]} />
+                    <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.3} />
+                  </mesh>
+                </group>
+              ) : (
+                <>
+                  <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+                    {segments === 2 ? (
+                       <cylinderGeometry args={[0.3, 0.3, 3, 16]} />
+                    ) : (
+                       <cylinderGeometry args={[1.8, 1.8, 0.6, segments]} />
+                    )}
+                    <meshPhysicalMaterial 
+                      color={color} 
+                      emissive={color}
+                      emissiveIntensity={0.3}
+                      transmission={0.6} 
+                      opacity={0.9} 
+                      roughness={0.1}
+                      metalness={0.4}
+                      ior={1.5}
+                      transparent={true}
+                    />
+                  </mesh>
+                  <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+                    {segments === 2 ? (
+                       <cylinderGeometry args={[0.3, 0.3, 3, 16]} />
+                    ) : (
+                       <cylinderGeometry args={[1.8, 1.8, 0.6, segments]} />
+                    )}
+                    <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.4} />
+                  </mesh>
+                </>
+              )}
            </Float>
            <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
         </Canvas>
