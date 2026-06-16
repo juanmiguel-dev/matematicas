@@ -680,72 +680,70 @@ export default function GeometriaDimensional() {
         </Section>
 
         {/* SLIDE 4.5: GEMAS */}
-        <Section className="items-center">
-          <div className="flex flex-col lg:flex-row items-center gap-12 bg-emerald-900 rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-emerald-700 h-auto lg:h-[80vh] w-full">
-             <div className="flex-1 space-y-8 w-full z-10">
-               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-900/80 text-emerald-300 font-bold text-sm uppercase tracking-widest border border-emerald-500/50">
-                 Gemas
-               </div>
-               <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white">Gema Pura (Crisoprasa Astral)</h2>
-               <p className="text-xl text-emerald-100/80 leading-relaxed font-light">
-                 El número 19 es indivisible. Es una de las gemas básicas del Mundo. Una estructura pura sin división.
-               </p>
-               <div className="bg-emerald-900/50 border border-emerald-700/50 rounded-2xl p-6">
-                 <div className="text-3xl font-bold font-mono text-emerald-400 mb-2">Análisis: Singular</div>
-                 <div className="text-lg text-emerald-200 font-mono">19 = Crisoprasa Astral</div>
-                 <div className="text-sm text-emerald-300/70 mt-2">No-division structure found. Irreducible.</div>
-               </div>
-               <p className="text-emerald-400 flex items-center gap-2 text-sm font-medium">
-                 <ZoomIn className="w-4 h-4" /> Inspecciona la gema pura en el espacio.
-               </p>
-             </div>
-             
-             <div className="flex-1 w-full h-[500px] lg:h-full bg-black/40 rounded-3xl overflow-hidden cursor-move border border-emerald-900/50 shadow-inner relative">
-               <Canvas camera={{ position: [0, 0, 12], fov: 45 }}>
-                 <color attach="background" args={['#022c22']} />
-                 <ambientLight intensity={0.5} />
-                 <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} intensity={2} color="#6ee7b7" />
-                 <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#10b981" />
-                 <Environment preset="sunset" />
-                 <CrisoprasaAstralGema />
-                 <OrbitControls autoRotate autoRotateSpeed={1} enableZoom={true} />
-               </Canvas>
-             </div>
-          </div>
-        </Section>
+        <Section className="items-center w-full">
+          <div className="w-full space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-900/50 text-emerald-300 font-bold text-sm uppercase tracking-widest border border-emerald-500/50">
+              Gemas
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white mb-8">Polígonos Irreductibles</h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+              
+              {/* Gem 19 */}
+              <div className="flex flex-col bg-emerald-900/40 backdrop-blur-md rounded-[3rem] p-8 lg:p-10 shadow-2xl border border-emerald-700/50 h-auto lg:h-[800px]">
+                <div className="space-y-6 z-10 flex-shrink-0">
+                  <h3 className="text-3xl font-bold font-sans text-white">Estructura N=19</h3>
+                  <p className="text-lg text-emerald-100/80 leading-relaxed font-light">
+                    Poliedro fundamental de 19 unidades. Estructura pura sin factores divisibles.
+                  </p>
+                  <div className="bg-emerald-900/50 border border-emerald-700/50 rounded-2xl p-5">
+                    <div className="text-xl font-bold font-mono text-emerald-400 mb-1">Análisis Topológico</div>
+                    <div className="text-sm text-emerald-200 font-mono">Geometría: 19 lados</div>
+                    <div className="text-xs text-emerald-300/70 mt-1">Single 19-polygon unit - No sub-units.</div>
+                  </div>
+                </div>
+                
+                <div className="flex-1 w-full min-h-[400px] bg-black/40 rounded-3xl overflow-hidden cursor-move border border-emerald-900/50 shadow-inner relative mt-6">
+                  <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+                    <color attach="background" args={['#022c22']} />
+                    <ambientLight intensity={0.5} />
+                    <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} intensity={2} color="#6ee7b7" />
+                    <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#10b981" />
+                    <Environment preset="sunset" />
+                    <CrisoprasaAstralGema />
+                    <OrbitControls autoRotate autoRotateSpeed={1} enableZoom={true} />
+                  </Canvas>
+                </div>
+              </div>
 
-        {/* SLIDE 4.6: GEMAS 29 */}
-        <Section className="items-center mt-8 lg:mt-0">
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 bg-sky-900 rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-sky-700 h-auto lg:h-[80vh] w-full">
-             <div className="flex-1 space-y-8 w-full z-10">
-               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-900/80 text-sky-300 font-bold text-sm uppercase tracking-widest border border-sky-500/50">
-                 Gemas
-               </div>
-               <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white">Gema Celestial (Celestial Astral)</h2>
-               <p className="text-xl text-sky-100/80 leading-relaxed font-light">
-                 El número 29 presenta un orden de magnitud superior. Una unidad singular que no contiene divisiones.
-               </p>
-               <div className="bg-sky-900/50 border border-sky-700/50 rounded-2xl p-6">
-                 <div className="text-3xl font-bold font-mono text-sky-400 mb-2">Análisis: Singular</div>
-                 <div className="text-lg text-sky-200 font-mono">29 = Celestial Astral</div>
-                 <div className="text-sm text-sky-300/70 mt-2">Single 29-polygon unit - No sub-units.</div>
-               </div>
-               <p className="text-sky-400 flex items-center gap-2 text-sm font-medium">
-                 <ZoomIn className="w-4 h-4" /> Inspecciona el núcleo hiper-facetado.
-               </p>
-             </div>
-             
-             <div className="flex-1 w-full h-[500px] lg:h-full bg-black/40 rounded-3xl overflow-hidden cursor-move border border-sky-900/50 shadow-inner relative">
-               <Canvas camera={{ position: [0, 0, 13], fov: 45 }}>
-                 <color attach="background" args={['#082f49']} />
-                 <ambientLight intensity={0.5} />
-                 <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} intensity={2} color="#7dd3fc" />
-                 <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#0ea5e9" />
-                 <Environment preset="sunset" />
-                 <CelestialAstralGema />
-                 <OrbitControls autoRotate autoRotateSpeed={0.8} enableZoom={true} />
-               </Canvas>
-             </div>
+              {/* Gem 29 */}
+              <div className="flex flex-col bg-sky-900/40 backdrop-blur-md rounded-[3rem] p-8 lg:p-10 shadow-2xl border border-sky-700/50 h-auto lg:h-[800px]">
+                <div className="space-y-6 z-10 flex-shrink-0">
+                  <h3 className="text-3xl font-bold font-sans text-white">Estructura N=29</h3>
+                  <p className="text-lg text-sky-100/80 leading-relaxed font-light">
+                    Poliedro fundamental de 29 unidades. Orden de magnitud superior sin divisores.
+                  </p>
+                  <div className="bg-sky-900/50 border border-sky-700/50 rounded-2xl p-5">
+                    <div className="text-xl font-bold font-mono text-sky-400 mb-1">Análisis Topológico</div>
+                    <div className="text-sm text-sky-200 font-mono">Geometría: 29 lados</div>
+                    <div className="text-xs text-sky-300/70 mt-1">Single 29-polygon unit - No sub-units.</div>
+                  </div>
+                </div>
+                
+                <div className="flex-1 w-full min-h-[400px] bg-black/40 rounded-3xl overflow-hidden cursor-move border border-sky-900/50 shadow-inner relative mt-6">
+                  <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+                    <color attach="background" args={['#082f49']} />
+                    <ambientLight intensity={0.5} />
+                    <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} intensity={2} color="#7dd3fc" />
+                    <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#0ea5e9" />
+                    <Environment preset="sunset" />
+                    <CelestialAstralGema />
+                    <OrbitControls autoRotate autoRotateSpeed={0.8} enableZoom={true} />
+                  </Canvas>
+                </div>
+              </div>
+
+            </div>
           </div>
         </Section>
 
