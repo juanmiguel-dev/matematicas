@@ -505,28 +505,7 @@ export default function GeometriaDimensional() {
       </nav>
 
       <main className="relative z-10 w-full max-w-7xl mx-auto">
-        
-        {/* SLIDE 1: Hero */}
-        <Section className="items-center text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="max-w-4xl bg-white/80 backdrop-blur-md p-12 rounded-[3rem] shadow-xl border border-white"
-          >
-            <div className="inline-flex items-center justify-center p-4 bg-sky-50 rounded-2xl mb-8 text-sky-600">
-              <Box className="w-12 h-12" />
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 font-sans text-slate-800 leading-tight">
-              Geometría <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-600">Dimensional</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-500 font-light tracking-wide leading-relaxed">
-              Interactúa con las representaciones topológicas 3D, 4D y 6D de la factorización prima. Gira las figuras con tu cursor.
-            </p>
-          </motion.div>
-        </Section>
+        {/* Hero section removed as per user request */}
 
         {/* SLIDE 1.5: Los Primeros 5 Primos */}
         <Section>
