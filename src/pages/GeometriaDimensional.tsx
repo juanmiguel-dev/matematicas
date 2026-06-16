@@ -610,7 +610,7 @@ export default function GeometriaDimensional() {
                  <ambientLight intensity={0.5} />
                  <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} intensity={2} color="#6ee7b7" />
                  <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#10b981" />
-                 <Environment preset="city" />
+                 <Environment preset="sunset" />
                  <CrisoprasaAstralGema />
                  <OrbitControls autoRotate autoRotateSpeed={1} enableZoom={true} />
                </Canvas>
@@ -645,7 +645,7 @@ export default function GeometriaDimensional() {
                  <ambientLight intensity={0.5} />
                  <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} intensity={2} color="#7dd3fc" />
                  <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#0ea5e9" />
-                 <Environment preset="city" />
+                 <Environment preset="sunset" />
                  <CelestialAstralGema />
                  <OrbitControls autoRotate autoRotateSpeed={0.8} enableZoom={true} />
                </Canvas>
