@@ -525,6 +525,58 @@ const CelestialAstralGema = () => {
 
 
 
+// 7. Gema 137 (Constante de Estructura Fina)
+const ConstanteEstructuraFinaGema = () => {
+  const group = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (group.current) {
+      group.current.rotation.y = state.clock.elapsedTime * 0.1;
+      group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.05) * 0.15;
+    }
+  });
+
+  return (
+    <group ref={group}>
+      <Float speed={1.5} rotationIntensity={0.4} floatIntensity={1.5}>
+        <mesh scale={[1.2, 1.2, 1.2]}>
+          <icosahedronGeometry args={[3, 2]} />
+          <meshPhysicalMaterial 
+            color="#f472b6"
+            emissive="#9d174d"
+            emissiveIntensity={0.5}
+            transmission={0.9}
+            opacity={1}
+            roughness={0}
+            metalness={0.1}
+            ior={2.5}
+            thickness={2}
+            side={THREE.DoubleSide}
+            transparent
+          />
+        </mesh>
+        <mesh scale={[0.9, 0.9, 0.9]}>
+          <icosahedronGeometry args={[3, 1]} />
+          <meshPhysicalMaterial 
+            color="#fbcfe8"
+            emissive="#be185d"
+            emissiveIntensity={0.8}
+            transmission={0.3}
+            roughness={0}
+            metalness={0.7}
+            transparent
+            opacity={0.85}
+          />
+        </mesh>
+        <mesh scale={[1.22, 1.22, 1.22]}>
+          <icosahedronGeometry args={[3, 2]} />
+          <meshBasicMaterial color="#fce7f3" wireframe transparent opacity={0.25} />
+        </mesh>
+      </Float>
+    </group>
+  );
+};
+
 export default function GeometriaDimensional() {
   const [activeSection, setActiveSection] = React.useState('primos');
 
@@ -833,6 +885,57 @@ export default function GeometriaDimensional() {
                 </div>
               </div>
 
+            </div>
+
+            {/* Gem 137 (Full Width) */}
+            <div className="mt-8 flex flex-col lg:flex-row bg-pink-900/30 backdrop-blur-md rounded-[3rem] p-8 lg:p-10 shadow-2xl border border-pink-700/40 h-auto">
+              <div className="flex-1 space-y-6 z-10 lg:pr-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-900/50 text-pink-300 font-bold text-sm uppercase tracking-widest border border-pink-700/50">
+                  El Gran Misterio
+                </div>
+                <h3 className="text-4xl font-bold font-sans text-white">Número 137</h3>
+                
+                <div className="bg-pink-900/40 border border-pink-700/40 rounded-2xl p-6">
+                  <p className="text-lg text-pink-100/90 leading-relaxed font-light mb-4">
+                    El número 137 es un número primo. Es una estructura pura, completamente indivisible, lo que significa que solo se puede dividir de manera exacta por 1 y por sí mismo.
+                  </p>
+                  <p className="text-lg text-pink-100/90 leading-relaxed font-light mb-6">
+                    Más allá de las matemáticas puras, el 137 es uno de los números más fascinantes y misteriosos de la física moderna debido a su estrecha relación con la <strong className="text-white">constante de estructura fina (α)</strong>.
+                  </p>
+                  
+                  <div className="bg-black/40 rounded-xl p-5 mb-6 flex flex-col items-center justify-center border border-pink-500/20">
+                    <div className="text-sm text-pink-200/80 uppercase tracking-widest mb-3 font-semibold">Factor de Acoplamiento</div>
+                    <div className="flex items-center gap-4 text-3xl font-serif text-white">
+                      <span className="italic">α</span> 
+                      <span className="text-pink-400">≈</span> 
+                      <div className="flex flex-col items-center text-2xl">
+                        <span>1</span>
+                        <div className="w-16 h-[2px] bg-pink-400 my-1"></div>
+                        <span>137</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-base text-pink-200/80 leading-relaxed font-light mb-4">
+                    En física cuántica, esta constante determina la fuerza de la interacción electromagnética (cómo se acoplan los electrones con los fotones). Es una constante adimensional —no depende de metros, kilogramos o segundos; es un número puro del universo—.
+                  </p>
+                  <p className="text-base text-pink-200/80 leading-relaxed font-light italic border-l-2 border-pink-500/50 pl-4">
+                    Grandes físicos como Wolfgang Pauli, Richard Feynman y Werner Heisenberg pasaron vidas enteras obsesionados con él. Feynman llegó a decir que todos los físicos teóricos deberían tener este número pegado en su pared para recordar cuánto desconocemos, ya que el universo parece estar "construido" sobre este factor, pero nadie sabe realmente por qué tiene ese valor específico y no otro.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-full bg-black/50 rounded-3xl overflow-hidden cursor-move border border-pink-900/50 shadow-inner relative mt-8 lg:mt-0">
+                <Canvas camera={{ position: [0, 0, 11], fov: 45 }}>
+                  <color attach="background" args={['#2e0c1a']} />
+                  <ambientLight intensity={0.5} />
+                  <spotLight position={[10, 20, 10]} angle={0.4} penumbra={1} intensity={2.5} color="#fbcfe8" />
+                  <spotLight position={[-10, -10, -10]} angle={0.4} penumbra={1} intensity={1.5} color="#db2777" />
+                  <Environment preset="city" />
+                  <ConstanteEstructuraFinaGema />
+                  <OrbitControls autoRotate autoRotateSpeed={1.2} enableZoom={true} />
+                </Canvas>
+              </div>
             </div>
           </div>
         </section>

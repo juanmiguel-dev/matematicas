@@ -175,35 +175,6 @@ export const StorySlide: React.FC<StorySlideProps> = ({ pageNumber, onNavigateTo
                 );
               })}
             </div>
-
-            {/* Special Section for 137 */}
-            <div className="mt-8 p-6 bg-white rounded-2xl border border-slate-100 card-shadow flex flex-col md:flex-row items-center gap-6 hover:border-amber-200 hover:shadow-md transition-all">
-              <div className="flex flex-col items-center space-y-3 shrink-0">
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Gema Arcana</span>
-                <GemIcon value={137} size={88} showNumber={true} animate={true} />
-                <h3 className="font-bold text-base text-slate-700">Prisma Celestial 137</h3>
-              </div>
-              <div className="flex-1 space-y-4 border-t md:border-t-0 md:border-l border-slate-100 pt-5 md:pt-0 md:pl-6 text-slate-600 text-sm leading-relaxed text-left">
-                <h4 className="font-bold text-lg text-slate-800">El gran misterio del 137 en la Física</h4>
-                <p>
-                  El número 137 es un número primo. Es una estructura pura, completamente indivisible, lo que significa que solo se puede dividir de manera exacta por 1 y por sí mismo. Más allá de las matemáticas puras, el 137 es uno de los números más fascinantes y misteriosos de la física moderna debido a su estrecha relación con la <strong>constante de estructura fina (α)</strong>.
-                </p>
-                <p>
-                  En física cuántica, la constante de estructura fina determina la fuerza de la interacción electromagnética (cómo se acoplan los electrones con los fotones). Su valor es casi exactamente:
-                </p>
-                <div className="py-1 flex justify-start">
-                  <div className="px-5 py-2.5 bg-slate-50 rounded-xl border border-slate-200 font-serif text-lg text-slate-800 font-semibold shadow-sm flex items-center gap-3">
-                    <span className="italic text-xl">α</span> <span className="text-slate-500">≈</span> <span className="flex flex-col items-center leading-none text-base"><span>1</span><span className="w-full h-[1.5px] bg-slate-400 my-0.5"></span><span>137</span></span>
-                  </div>
-                </div>
-                <p>
-                  Este número (aproximadamente <span className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded text-slate-700">1/137.036</span>) es una constante adimensional —no depende de metros, kilogramos o segundos; es un número puro del universo—.
-                </p>
-                <p>
-                  Grandes físicos como Wolfgang Pauli, Richard Feynman y Werner Heisenberg pasaron vidas enteras obsesionados con él. Feynman llegó a decir que todos los físicos teóricos deberían tener este número pegado en su pared para recordar cuánto desconocemos, ya que el universo parece estar "construido" sobre este factor de acoplamiento, pero nadie sabe realmente por qué tiene ese valor específico y no otro.
-                </p>
-              </div>
-            </div>
           </div>
         );
 
