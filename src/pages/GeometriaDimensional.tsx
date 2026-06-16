@@ -347,6 +347,58 @@ const CrisoprasaAstralGema = () => {
   );
 };
 
+// 6. Gema Celestial (Celestial Astral) - 29
+const CelestialAstralGema = () => {
+  const group = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (group.current) {
+      group.current.rotation.y = state.clock.elapsedTime * 0.15;
+      group.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.1) * 0.1;
+    }
+  });
+
+  return (
+    <group ref={group}>
+      <Float speed={2.5} rotationIntensity={0.8} floatIntensity={1.2}>
+        <mesh scale={[1.1, 1.1, 1.1]}>
+          <icosahedronGeometry args={[3, 1]} />
+          <meshPhysicalMaterial 
+            color="#0ea5e9"
+            emissive="#0369a1"
+            emissiveIntensity={0.4}
+            transmission={0.9}
+            opacity={1}
+            roughness={0}
+            metalness={0.2}
+            ior={2.2}
+            thickness={1.5}
+            side={THREE.DoubleSide}
+            transparent
+          />
+        </mesh>
+        <mesh scale={[0.85, 0.85, 0.85]}>
+          <icosahedronGeometry args={[3, 0]} />
+          <meshPhysicalMaterial 
+            color="#38bdf8"
+            emissive="#0284c7"
+            emissiveIntensity={0.7}
+            transmission={0.4}
+            roughness={0}
+            metalness={0.6}
+            transparent
+            opacity={0.9}
+          />
+        </mesh>
+        <mesh scale={[1.12, 1.12, 1.12]}>
+          <icosahedronGeometry args={[3, 1]} />
+          <meshBasicMaterial color="#7dd3fc" wireframe transparent opacity={0.2} />
+        </mesh>
+      </Float>
+    </group>
+  );
+};
+
 
 export default function GeometriaDimensional() {
   useEffect(() => {
@@ -561,6 +613,41 @@ export default function GeometriaDimensional() {
                  <Environment preset="city" />
                  <CrisoprasaAstralGema />
                  <OrbitControls autoRotate autoRotateSpeed={1} enableZoom={true} />
+               </Canvas>
+             </div>
+          </div>
+        </Section>
+
+        {/* SLIDE 4.6: GEMAS 29 */}
+        <Section className="items-center mt-8 lg:mt-0">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 bg-sky-900 rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-sky-700 h-auto lg:h-[80vh] w-full">
+             <div className="flex-1 space-y-8 w-full z-10">
+               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-900/80 text-sky-300 font-bold text-sm uppercase tracking-widest border border-sky-500/50">
+                 Gemas
+               </div>
+               <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white">Gema Celestial (Celestial Astral)</h2>
+               <p className="text-xl text-sky-100/80 leading-relaxed font-light">
+                 El número 29 presenta un orden de magnitud superior. Una unidad singular que no contiene divisiones.
+               </p>
+               <div className="bg-sky-900/50 border border-sky-700/50 rounded-2xl p-6">
+                 <div className="text-3xl font-bold font-mono text-sky-400 mb-2">Análisis: Singular</div>
+                 <div className="text-lg text-sky-200 font-mono">29 = Celestial Astral</div>
+                 <div className="text-sm text-sky-300/70 mt-2">Single 29-polygon unit - No sub-units.</div>
+               </div>
+               <p className="text-sky-400 flex items-center gap-2 text-sm font-medium">
+                 <ZoomIn className="w-4 h-4" /> Inspecciona el núcleo hiper-facetado.
+               </p>
+             </div>
+             
+             <div className="flex-1 w-full h-[500px] lg:h-full bg-black/40 rounded-3xl overflow-hidden cursor-move border border-sky-900/50 shadow-inner relative">
+               <Canvas camera={{ position: [0, 0, 13], fov: 45 }}>
+                 <color attach="background" args={['#082f49']} />
+                 <ambientLight intensity={0.5} />
+                 <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} intensity={2} color="#7dd3fc" />
+                 <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={1} color="#0ea5e9" />
+                 <Environment preset="city" />
+                 <CelestialAstralGema />
+                 <OrbitControls autoRotate autoRotateSpeed={0.8} enableZoom={true} />
                </Canvas>
              </div>
           </div>
