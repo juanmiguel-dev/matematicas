@@ -186,7 +186,7 @@ export function getGemMetadata(n: number): GemMeta {
           type: "Gema Arcana",
           glowClass: "chalk-glow-rainbow",
           bgGradient: "from-slate-200/80 to-zinc-400/90",
-          textColor: "text-slate-200",
+          textColor: "text-slate-700",
           borderClass: "border-slate-300/40"
         };
       } else {
