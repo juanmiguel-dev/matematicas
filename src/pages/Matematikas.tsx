@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Sparkles, BrainCircuit, ArrowRight, Binary, BookOpen, Cpu, Radio, Split, Box } from 'lucide-react';
+import { Sparkles, BrainCircuit, BookOpen, ArrowRight, Box, Radio, Cpu, Split, Music, Binary } from 'lucide-react';
 
 export default function Matematikas() {
   return (
@@ -117,11 +117,43 @@ export default function Matematikas() {
               </Link>
             </motion.div>
 
-            {/* Lexicon Card */}
+            {/* Matematicas Musicales Card */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Link 
+                to="/matematicas-musicales" 
+                className="group block relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 overflow-hidden h-full"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-900/20 to-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center shadow-lg shadow-fuchsia-500/20 mb-6 group-hover:scale-110 transition-transform duration-500">
+                    <Music className="w-6 h-6 text-white" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-fuchsia-300 transition-colors">
+                    Matemáticas Musicales
+                  </h3>
+                  <p className="text-slate-400 mb-8 line-clamp-3">
+                    La arquitectura oculta de la armonía. Explora el Monocordio de Pitágoras, la Proporción Áurea en el piano y la cimática del sonido.
+                  </p>
+                  
+                  <div className="flex items-center text-fuchsia-400 font-medium group-hover:gap-2 transition-all mt-auto">
+                    <span>Escuchar armónicos</span>
+                    <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* Lexicon Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
               <Link 
                 to="/lexicon" 
@@ -153,7 +185,7 @@ export default function Matematikas() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
             >
               <Link 
                 to="/codigo-maquina" 
@@ -185,7 +217,7 @@ export default function Matematikas() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
             >
               <Link 
                 to="/gematria-vibracional" 
@@ -217,7 +249,7 @@ export default function Matematikas() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
             >
               <Link 
                 to="/p-vs-np" 

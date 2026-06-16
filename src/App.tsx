@@ -8,6 +8,7 @@ import GematriaVibracional from './pages/GematriaVibracional';
 import PVsNP from './pages/PVsNP';
 import GeometriaDimensional from './pages/GeometriaDimensional';
 import Radiomatika from './pages/Radiomatika';
+import MatematicasMusicales from './pages/MatematicasMusicales';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/p-vs-np" element={<PVsNP />} />
         <Route path="/geometria-dimensional" element={<GeometriaDimensional />} />
         <Route path="/radiomatika" element={<Radiomatika />} />
+        <Route path="/matematicas-musicales" element={<MatematicasMusicales />} />
       </Routes>
     </BrowserRouter>
   );
