@@ -671,7 +671,7 @@ export default function GeometriaDimensional() {
               {/* Gem 19 */}
               <div className="flex flex-col bg-emerald-900/40 backdrop-blur-md rounded-[3rem] p-8 lg:p-10 shadow-2xl border border-emerald-700/50 h-auto lg:h-[800px]">
                 <div className="space-y-6 z-10 flex-shrink-0">
-                  <h3 className="text-3xl font-bold font-sans text-white">Estructura N=19</h3>
+                  <h3 className="text-3xl font-bold font-sans text-white">Número 19</h3>
                   <p className="text-lg text-emerald-100/80 leading-relaxed font-light">
                     Poliedro fundamental de 19 unidades. Estructura pura sin factores divisibles.
                   </p>
@@ -698,7 +698,7 @@ export default function GeometriaDimensional() {
               {/* Gem 29 */}
               <div className="flex flex-col bg-sky-900/40 backdrop-blur-md rounded-[3rem] p-8 lg:p-10 shadow-2xl border border-sky-700/50 h-auto lg:h-[800px]">
                 <div className="space-y-6 z-10 flex-shrink-0">
-                  <h3 className="text-3xl font-bold font-sans text-white">Estructura N=29</h3>
+                  <h3 className="text-3xl font-bold font-sans text-white">Número 29</h3>
                   <p className="text-lg text-sky-100/80 leading-relaxed font-light">
                     Poliedro fundamental de 29 unidades. Orden de magnitud superior sin divisores.
                   </p>
