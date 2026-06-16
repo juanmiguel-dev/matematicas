@@ -11,6 +11,49 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const PrimeBackground = () => {
+  const [particles, setParticles] = useState<{id: number, x: number, y: number, size: number, duration: number, prime: number, delay: number}[]>([]);
+
+  useEffect(() => {
+    const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+    const generated = Array.from({ length: 30 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 30 + 10,
+      duration: Math.random() * 50 + 30,
+      delay: Math.random() * -30,
+      prime: primes[Math.floor(Math.random() * primes.length)]
+    }));
+    setParticles(generated);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-[#07070a]">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute text-white/10 font-mono font-bold select-none drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+          style={{ left: `${p.x}%`, top: `${p.y}%`, fontSize: p.size }}
+          animate={{
+            y: [0, -200, 0],
+            rotate: [0, 360],
+            opacity: [0.05, 0.2, 0.05]
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            ease: "linear",
+            delay: p.delay
+          }}
+        >
+          {p.prime}
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
 export default function NumerosPrimos() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(false);
@@ -107,10 +150,11 @@ export default function NumerosPrimos() {
   ];
 
   return (
-    <div id="master-root" className="min-h-screen bg-light-warm pb-24 text-slate-800 overflow-x-hidden font-sans">
+    <div id="master-root" className="min-h-screen pb-24 text-slate-800 overflow-x-hidden font-sans relative">
+      <PrimeBackground />
 
       {/* HEADER */}
-      <header className="w-full bg-white/80 backdrop-blur-sm border-b border-slate-100 sticky top-0 z-50">
+      <header className="w-full bg-[#07070a]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
         <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between gap-4">
           
           {/* Logo */}
@@ -119,7 +163,7 @@ export default function NumerosPrimos() {
               <span className="font-bold text-white text-lg">7</span>
             </div>
             <div>
-              <h1 className="text-base font-bold text-slate-800 leading-tight">
+              <h1 className="text-base font-bold text-white leading-tight">
                 Números Primos
               </h1>
               <span className="text-[11px] text-slate-400 font-medium tracking-wide uppercase">
@@ -134,8 +178,8 @@ export default function NumerosPrimos() {
               onClick={toggleSound}
               className={`px-3 py-2 rounded-lg border text-sm font-medium flex items-center gap-2 transition-all ${
                 soundEnabled
-                  ? "bg-amber-50 border-amber-200 text-amber-700"
-                  : "bg-white border-slate-200 text-slate-500 hover:text-slate-700 hover:border-slate-300"
+                  ? "bg-amber-500/20 border-amber-500/30 text-amber-400"
+                  : "bg-white/5 border-white/10 text-slate-400 hover:text-white hover:border-white/20"
               }`}
             >
               {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
@@ -159,7 +203,7 @@ export default function NumerosPrimos() {
         <section className="space-y-5">
           
           {/* Chapter timeline */}
-          <div className="bg-white rounded-2xl border border-slate-100 card-shadow p-3 overflow-x-auto">
+          <div className="bg-[#111] rounded-2xl border border-white/10 card-shadow p-3 overflow-x-auto relative z-10">
             <div className="flex justify-between w-full min-w-[720px] px-2 items-center">
               <span className="text-[11px] font-mono text-slate-400 mr-3 uppercase tracking-wide shrink-0">Capítulos:</span>
               
@@ -182,10 +226,10 @@ export default function NumerosPrimos() {
                     >
                       <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
                         isActive
-                          ? "bg-amber-400 border-amber-400 text-white scale-110 shadow-md"
+                          ? "bg-amber-400 border-amber-400 text-slate-900 scale-110 shadow-md"
                           : isPassed
-                            ? "bg-amber-50 border-amber-300 text-amber-600"
-                            : "bg-white border-slate-200 text-slate-400 hover:border-slate-300 hover:text-slate-600"
+                            ? "bg-amber-900/50 border-amber-700 text-amber-500"
+                            : "bg-white/5 border-white/10 text-slate-400 hover:border-white/30 hover:text-white"
                       }`}>
                         {ch.page}
                       </div>
