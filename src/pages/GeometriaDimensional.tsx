@@ -531,52 +531,46 @@ const ConstanteEstructuraFinaGema = () => {
   
   useFrame((state) => {
     if (group.current) {
-      group.current.rotation.y = state.clock.elapsedTime * 0.1;
-      group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.05) * 0.15;
+      group.current.rotation.y = state.clock.elapsedTime * 0.15;
+      group.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.1) * 0.1;
     }
   });
 
   return (
     <group ref={group}>
-      <Float speed={1.5} rotationIntensity={0.4} floatIntensity={1.5}>
-        <mesh scale={[1.2, 1.2, 1.2]}>
+      <Float speed={2.5} rotationIntensity={0.8} floatIntensity={1.2}>
+        <mesh scale={[1.1, 1.1, 1.1]}>
           <icosahedronGeometry args={[3, 2]} />
           <meshPhysicalMaterial 
-            color="#4a044e"
-            emissive="#831843"
-            emissiveIntensity={0.2}
+            color="#db2777"
+            emissive="#9d174d"
+            emissiveIntensity={0.4}
             transmission={0.9}
             opacity={1}
-            roughness={0.1}
-            metalness={0.3}
-            ior={1.8}
-            thickness={2}
+            roughness={0}
+            metalness={0.2}
+            ior={2.2}
+            thickness={1.5}
             side={THREE.DoubleSide}
             transparent
           />
         </mesh>
-        <mesh scale={[0.9, 0.9, 0.9]}>
-          <icosahedronGeometry args={[3, 2]} />
+        <mesh scale={[0.85, 0.85, 0.85]}>
+          <icosahedronGeometry args={[3, 1]} />
           <meshPhysicalMaterial 
-            color="#02000a"
-            emissive="#000000"
-            emissiveIntensity={0}
-            transmission={0.1}
-            roughness={0.9}
-            metalness={0.1}
+            color="#fbcfe8"
+            emissive="#be185d"
+            emissiveIntensity={0.7}
+            transmission={0.4}
+            roughness={0}
+            metalness={0.6}
             transparent
-            opacity={0.95}
+            opacity={0.9}
           />
         </mesh>
-        
-        {/* Cielo de noche estrellado adentro de la gema */}
-        <Stars radius={1} depth={1.5} count={1000} factor={2} saturation={0.8} fade speed={1} />
-        <Sparkles count={100} scale={4} size={0.6} speed={0.2} opacity={0.8} color="#fbcfe8" />
-        <Sparkles count={50} scale={3} size={1.2} speed={0.1} opacity={0.6} color="#7dd3fc" />
-
-        <mesh scale={[1.22, 1.22, 1.22]}>
+        <mesh scale={[1.12, 1.12, 1.12]}>
           <icosahedronGeometry args={[3, 2]} />
-          <meshBasicMaterial color="#fce7f3" wireframe transparent opacity={0.25} />
+          <meshBasicMaterial color="#fce7f3" wireframe transparent opacity={0.2} />
         </mesh>
       </Float>
     </group>
@@ -934,12 +928,12 @@ export default function GeometriaDimensional() {
               <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-full bg-black/50 rounded-3xl overflow-hidden cursor-move border border-pink-900/50 shadow-inner relative mt-8 lg:mt-0">
                 <Canvas camera={{ position: [0, 0, 11], fov: 45 }}>
                   <color attach="background" args={['#2e0c1a']} />
-                  <ambientLight intensity={0.2} />
-                  <spotLight position={[10, 20, 10]} angle={0.4} penumbra={1} intensity={2} color="#fbcfe8" />
-                  <spotLight position={[-10, -10, -10]} angle={0.4} penumbra={1} intensity={2} color="#db2777" />
-                  <pointLight position={[0, 0, 0]} intensity={0.5} color="#ffffff" />
+                  <ambientLight intensity={0.5} />
+                  <spotLight position={[10, 20, 10]} angle={0.4} penumbra={1} intensity={2.5} color="#fbcfe8" />
+                  <spotLight position={[-10, -10, -10]} angle={0.4} penumbra={1} intensity={1.5} color="#db2777" />
+                  <Environment preset="sunset" />
                   <ConstanteEstructuraFinaGema />
-                  <OrbitControls autoRotate autoRotateSpeed={0.8} enableZoom={true} />
+                  <OrbitControls autoRotate autoRotateSpeed={1.2} enableZoom={true} />
                 </Canvas>
               </div>
             </div>
