@@ -483,8 +483,29 @@ const CelestialAstralGema = () => {
 
 
 export default function GeometriaDimensional() {
+  const [activeSection, setActiveSection] = React.useState('primos');
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const handleScroll = () => {
+      const sections = ['primos', 'dim3', 'dim4', 'dim6', 'gemas', 'espiral'];
+      let current = 'primos';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2) {
+            current = section;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollTo = (id: string) => {
@@ -509,12 +530,26 @@ export default function GeometriaDimensional() {
           <ArrowLeft className="w-4 h-4" /> <span className="hidden md:inline">Inicio</span>
         </Link>
         <div className="hidden lg:flex items-center gap-6">
-          <button onClick={() => scrollTo('primos')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">Primos</button>
-          <button onClick={() => scrollTo('dim3')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">3D</button>
-          <button onClick={() => scrollTo('dim4')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">4D</button>
-          <button onClick={() => scrollTo('dim6')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">6D</button>
-          <button onClick={() => scrollTo('gemas')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">Gemas</button>
-          <button onClick={() => scrollTo('espiral')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">Espiral</button>
+          {[
+            { id: 'primos', label: 'Primos' },
+            { id: 'dim3', label: '3D' },
+            { id: 'dim4', label: '4D' },
+            { id: 'dim6', label: '6D' },
+            { id: 'gemas', label: 'Gemas' },
+            { id: 'espiral', label: 'Espiral' }
+          ].map((item) => (
+            <button 
+              key={item.id}
+              onClick={() => scrollTo(item.id)} 
+              className={`text-xs font-bold uppercase tracking-widest transition-all cursor-pointer ${
+                activeSection === item.id 
+                  ? 'text-sky-600 scale-110 drop-shadow-md' 
+                  : 'text-slate-500 hover:text-sky-400'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
         <div className="flex items-center gap-2 text-sky-700">
           <Hexagon className="w-5 h-5" />
