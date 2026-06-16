@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Box, Hexagon, Layers, ZoomIn } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, Float, Edges, Text, Line } from '@react-three/drei';
+import { OrbitControls, Environment, Float, Edges, Text, Line, Stars, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
 
 const Section = ({ children, className = "", id }: { children: React.ReactNode, className?: string, id?: string }) => (
@@ -556,18 +556,24 @@ const ConstanteEstructuraFinaGema = () => {
           />
         </mesh>
         <mesh scale={[0.9, 0.9, 0.9]}>
-          <icosahedronGeometry args={[3, 1]} />
+          <icosahedronGeometry args={[3, 2]} />
           <meshPhysicalMaterial 
-            color="#fbcfe8"
-            emissive="#be185d"
-            emissiveIntensity={0.8}
-            transmission={0.3}
-            roughness={0}
-            metalness={0.7}
+            color="#02000a"
+            emissive="#0a0022"
+            emissiveIntensity={0.5}
+            transmission={0.2}
+            roughness={0.4}
+            metalness={0.8}
             transparent
-            opacity={0.85}
+            opacity={0.9}
           />
         </mesh>
+        
+        {/* Cielo de noche estrellado adentro de la gema */}
+        <Stars radius={1.5} depth={1.2} count={1200} factor={3} saturation={0.8} fade speed={2} />
+        <Sparkles count={150} scale={4.5} size={2} speed={0.4} opacity={0.6} color="#fbcfe8" />
+        <Sparkles count={50} scale={3} size={4} speed={0.2} opacity={0.8} color="#7dd3fc" />
+
         <mesh scale={[1.22, 1.22, 1.22]}>
           <icosahedronGeometry args={[3, 2]} />
           <meshBasicMaterial color="#fce7f3" wireframe transparent opacity={0.25} />
