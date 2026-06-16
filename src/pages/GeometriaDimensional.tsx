@@ -755,10 +755,9 @@ export default function GeometriaDimensional() {
         </Section>
 
         {/* SLIDE 4.5: GEMAS */}
-        <Section id="gemas" className="items-center w-full">
-          <div className="w-full relative bg-[#07070a] p-8 lg:p-12 rounded-[3rem] shadow-2xl border border-white/5 overflow-hidden">
-            <PrimeBackground />
-            <div className="w-full space-y-6 relative z-10">
+        <section id="gemas" className="relative w-screen -ml-[calc(50vw-50%)] overflow-hidden bg-[#07070a] py-24 border-y border-white/5 shadow-2xl mt-12">
+          <PrimeBackground />
+          <div className="w-full max-w-7xl mx-auto px-6 relative z-10 space-y-6">
             <div className="flex justify-center w-full mb-12">
               <motion.div 
                 animate={{ 
@@ -836,8 +835,7 @@ export default function GeometriaDimensional() {
 
             </div>
           </div>
-          </div>
-        </Section>
+        </section>
 
         {/* SLIDE 5: Espiral Aurea (Geometria de Reposo vs Intention Current) */}
         <section id="espiral" className="relative w-screen h-screen -ml-[calc(50vw-50%)] overflow-hidden bg-[#0b101e]">
