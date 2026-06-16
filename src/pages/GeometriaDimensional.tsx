@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Box, Hexagon, Layers, ZoomIn } from 'lucide-react';
@@ -11,6 +11,49 @@ const Section = ({ children, className = "", id }: { children: React.ReactNode, 
     {children}
   </section>
 );
+
+const PrimeBackground = () => {
+  const [particles, setParticles] = useState<{id: number, x: number, y: number, size: number, duration: number, prime: number, delay: number}[]>([]);
+
+  useEffect(() => {
+    const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+    const generated = Array.from({ length: 30 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 30 + 10,
+      duration: Math.random() * 50 + 30,
+      delay: Math.random() * -30,
+      prime: primes[Math.floor(Math.random() * primes.length)]
+    }));
+    setParticles(generated);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute text-white/10 font-mono font-bold select-none drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+          style={{ left: `${p.x}%`, top: `${p.y}%`, fontSize: p.size }}
+          animate={{
+            y: [0, -200, 0],
+            rotate: [0, 360],
+            opacity: [0.05, 0.2, 0.05]
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            ease: "linear",
+            delay: p.delay
+          }}
+        >
+          {p.prime}
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 // --- 3D Components ---
 
@@ -713,7 +756,9 @@ export default function GeometriaDimensional() {
 
         {/* SLIDE 4.5: GEMAS */}
         <Section id="gemas" className="items-center w-full">
-          <div className="w-full space-y-6">
+          <div className="w-full relative bg-[#07070a] p-8 lg:p-12 rounded-[3rem] shadow-2xl border border-white/5 overflow-hidden">
+            <PrimeBackground />
+            <div className="w-full space-y-6 relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-900/50 text-emerald-300 font-bold text-sm uppercase tracking-widest border border-emerald-500/50">
               Gemas
             </div>
