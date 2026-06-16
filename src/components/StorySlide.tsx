@@ -33,7 +33,7 @@ export const StorySlide: React.FC<StorySlideProps> = ({ pageNumber, onNavigateTo
             <div className="text-center z-10 max-w-lg px-6 py-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/15 shadow-2xl">
               <span className="text-amber-400 font-mono text-xs uppercase tracking-widest block mb-3">✧ Revelación de los Números Primos ✧</span>
               <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white mb-3">
-                El Taller del Arquitecto Cósmico
+                El Taller del Mundo Cósmico
               </h1>
               <div className="w-12 h-0.5 bg-amber-400/60 mx-auto my-3" />
               <p className="text-white/70 text-lg font-medium">
@@ -153,7 +153,7 @@ export const StorySlide: React.FC<StorySlideProps> = ({ pageNumber, onNavigateTo
               <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Capítulo III · Los Elementos Indivisibles</span>
               <h2 className="text-2xl font-bold text-slate-800">Las Gemas Puras: Los Números Primos</h2>
               <p className="text-slate-600 text-base">
-                Estas piedras preciosas son irrompibles. No pueden ser divididas en piezas más pequeñas. Son los elementos básicos que el Arquitecto usa para construir todo lo demás.
+                Estas piedras preciosas son irrompibles. No pueden ser divididas en piezas más pequeñas. Son los elementos básicos que el Mundo usa para construir todo lo demás.
               </p>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -494,14 +494,14 @@ export const StorySlide: React.FC<StorySlideProps> = ({ pageNumber, onNavigateTo
       case 12:
         return (
           <div className="text-center max-w-2xl mx-auto space-y-6">
-            <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Capítulo Final · La Visión del Arquitecto</span>
+            <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Capítulo Final · La Visión del Mundo</span>
             <h2 className="text-2xl md:text-3xl font-bold text-slate-800 leading-tight">
               El Fin del Misterio, El Comienzo del Juego
             </h2>
             <div className="p-6 bg-white rounded-2xl border border-slate-100 card-shadow-md space-y-4">
               <BookOpen className="w-10 h-10 text-amber-400 mx-auto" />
               <p className="text-slate-700 text-xl leading-relaxed font-medium">
-                "Ahora posees la visión del Arquitecto. Cada vez que mires un número, ya no verás una simple figura; verás la hermosa estructura de gemas irrompibles que se esconde en su interior."
+                "Ahora posees la visión del Mundo. Cada vez que mires un número, ya no verás una simple figura; verás la hermosa estructura de gemas irrompibles que se esconde en su interior."
               </p>
             </div>
             <div className="pt-2">
@@ -530,7 +530,7 @@ export const StorySlide: React.FC<StorySlideProps> = ({ pageNumber, onNavigateTo
 
       {/* Page number */}
       <div className="relative z-10 flex justify-between items-center text-xs text-slate-400 font-mono mt-4 pt-3 border-t border-slate-100">
-        <span className="font-semibold tracking-wider">EL TALLER DEL ARQUITECTO CÓSMICO</span>
+        <span className="font-semibold tracking-wider">EL TALLER DEL MUNDO CÓSMICO</span>
         <span className="py-1 px-3 bg-slate-50 rounded-full border border-slate-200 font-bold text-slate-600">
           PÁGINA {pageNumber} / 12
         </span>

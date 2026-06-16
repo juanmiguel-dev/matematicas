@@ -1,5 +1,5 @@
 /**
- * Types for El Taller del Arquitecto Cósmico
+ * Types for El Taller del Mundo Cósmico
  */
 
 export interface PrimeFactor {

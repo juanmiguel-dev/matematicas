@@ -540,7 +540,7 @@ export default function GeometriaDimensional() {
                </div>
                <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white">Gema Pura (Crisoprasa Astral)</h2>
                <p className="text-xl text-emerald-100/80 leading-relaxed font-light">
-                 El número 19 es indivisible. Es una de las gemas básicas del Arquitecto. Una estructura pura sin división.
+                 El número 19 es indivisible. Es una de las gemas básicas del Mundo. Una estructura pura sin división.
                </p>
                <div className="bg-emerald-900/50 border border-emerald-700/50 rounded-2xl p-6">
                  <div className="text-3xl font-bold font-mono text-emerald-400 mb-2">Análisis: Singular</div>

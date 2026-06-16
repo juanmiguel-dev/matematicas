@@ -263,7 +263,7 @@ export default function NumerosPrimos() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-600 text-base leading-relaxed">
             <div className="space-y-3">
               <p>
-                Este recorrido dinámico del <strong className="text-slate-800">"Taller del Arquitecto Cósmico"</strong> expone el <strong className="text-slate-800">Teorema Fundamental de la Aritmética</strong>.
+                Este recorrido dinámico del <strong className="text-slate-800">"Taller del Mundo Cósmico"</strong> expone el <strong className="text-slate-800">Teorema Fundamental de la Aritmética</strong>.
               </p>
               <p>
                 Cada número entero mayor de 1 es como una sustancia química. O bien es un elemento químico puro (<strong className="text-slate-800">un número primo</strong>) o es una aleación formada por multiplicar un conjunto exclusivo de elementos puros (<strong className="text-slate-800">números compuestos</strong>).
@@ -285,7 +285,7 @@ export default function NumerosPrimos() {
       {/* FOOTER */}
       <footer className="w-full max-w-6xl mx-auto px-4 md:px-8 pt-8 mt-8 border-t border-slate-100 text-center text-xs text-slate-400 font-medium">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-          <span>© Creado bajo la Ley de Primos del Arquitecto Cósmico</span>
+          <span>© Creado bajo la Ley de Primos del Mundo Cósmico</span>
           <span>Basado fielmente en el manual de ilustraciones matemáticas</span>
         </div>
       </footer>

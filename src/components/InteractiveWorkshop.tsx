@@ -135,7 +135,7 @@ export const InteractiveWorkshop: React.FC = () => {
           <span className="text-xs font-semibold uppercase tracking-widest text-amber-600">Laboratorio Interactivo</span>
         </div>
         <h2 className="text-2xl md:text-3xl text-center font-bold text-slate-800">
-          El Taller del Arquitecto
+          El Taller del Mundo
         </h2>
         <p className="text-slate-500 text-center text-base mt-2 max-w-xl">
           ¡Jugá con las joyas matemáticas, descubrí el secreto adentro de cada número y encontrá los primos escondidos con el colador mágico!
@@ -243,7 +243,7 @@ export const InteractiveWorkshop: React.FC = () => {
                 </div>
                 <p className="text-slate-500 text-sm leading-relaxed">
                   {isSelectedPrime
-                    ? `El número ${currentNum} es indivisible. Es una de las gemas básicas del Arquitecto.`
+                    ? `El número ${currentNum} es indivisible. Es una de las gemas básicas del Mundo.`
                     : `El número ${currentNum} es una aleación formada por la fusión de ${flatFactors.length} gemas primas.`
                   }
                 </p>
