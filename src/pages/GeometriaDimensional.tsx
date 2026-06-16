@@ -6,8 +6,8 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Float, Edges, Text, Line } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Section = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
-  <section className={`min-h-screen flex flex-col justify-center relative py-20 px-6 ${className}`}>
+const Section = ({ children, className = "", id }: { children: React.ReactNode, className?: string, id?: string }) => (
+  <section id={id} className={`min-h-screen flex flex-col justify-center relative py-20 px-6 ${className}`}>
     {children}
   </section>
 );
@@ -479,6 +479,71 @@ const CelestialAstralGema = () => {
 };
 
 
+const FloatingSectionNav = () => {
+  const [activeSection, setActiveSection] = React.useState('primos');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['primos', 'dim3', 'dim4', 'dim6', 'gemas', 'espiral'];
+      let current = 'primos';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2) {
+            current = section;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const navItems = [
+    { id: 'primos', label: 'Primos Fundamentales' },
+    { id: 'dim3', label: 'Prisma 3D' },
+    { id: 'dim4', label: 'Tesseracto 4D' },
+    { id: 'dim6', label: 'Hipercubo 6D' },
+    { id: 'gemas', label: 'Polígonos Irreductibles' },
+    { id: 'espiral', label: 'Espiral Áurea' }
+  ];
+
+  return (
+    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4">
+      {navItems.map((item) => (
+        <button
+          key={item.id}
+          onClick={() => scrollTo(item.id)}
+          className={`group relative flex items-center justify-end ${
+            activeSection === item.id ? 'opacity-100' : 'opacity-40 hover:opacity-100'
+          } transition-all duration-300`}
+        >
+          <span className="absolute right-8 bg-slate-800/90 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-lg border border-slate-700/50">
+            {item.label}
+          </span>
+          <div className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
+            activeSection === item.id 
+              ? 'bg-sky-400 scale-125 shadow-[0_0_12px_rgba(56,189,248,0.8)]' 
+              : 'bg-slate-400'
+          }`} />
+        </button>
+      ))}
+    </div>
+  );
+};
+
+
 export default function GeometriaDimensional() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -504,11 +569,13 @@ export default function GeometriaDimensional() {
         </div>
       </nav>
 
+      <FloatingSectionNav />
+
       <main className="relative z-10 w-full max-w-7xl mx-auto">
         {/* Hero section removed as per user request */}
 
         {/* SLIDE 1.5: Los Primeros 5 Primos */}
-        <Section>
+        <Section id="primos">
           <div className="flex flex-col lg:flex-row items-center gap-12 bg-slate-900 rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-slate-700 h-auto lg:h-[80vh]">
              <div className="flex-1 space-y-8 w-full">
                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-900/50 text-indigo-300 font-bold text-sm uppercase tracking-widest border border-indigo-700/50">
@@ -559,7 +626,7 @@ export default function GeometriaDimensional() {
         </section>
 
         {/* SLIDE 2: 3D */}
-        <Section>
+        <Section id="dim3">
           <div className="flex flex-col lg:flex-row items-center gap-12 bg-white/60 backdrop-blur-sm rounded-[3rem] p-8 lg:p-12 shadow-lg border border-white h-auto lg:h-[80vh]">
              <div className="flex-1 space-y-8 w-full">
                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 text-sky-700 font-bold text-sm uppercase tracking-widest">
@@ -592,7 +659,7 @@ export default function GeometriaDimensional() {
         </Section>
 
         {/* SLIDE 3: 4D */}
-        <Section>
+        <Section id="dim4">
           <div className="flex flex-col lg:flex-row-reverse items-center gap-12 bg-white/60 backdrop-blur-sm rounded-[3rem] p-8 lg:p-12 shadow-lg border border-white h-auto lg:h-[80vh]">
              <div className="flex-1 space-y-8 w-full">
                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 text-amber-700 font-bold text-sm uppercase tracking-widest">
