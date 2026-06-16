@@ -533,7 +533,7 @@ export default function GeometriaDimensional() {
 
         {/* SLIDE 4.5: GEMAS */}
         <Section className="items-center">
-          <div className="flex flex-col lg:flex-row items-center gap-12 bg-emerald-950/40 backdrop-blur-md rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-emerald-800 h-auto lg:h-[80vh] w-full">
+          <div className="flex flex-col lg:flex-row items-center gap-12 bg-emerald-900 rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-emerald-700 h-auto lg:h-[80vh] w-full">
              <div className="flex-1 space-y-8 w-full z-10">
                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-900/80 text-emerald-300 font-bold text-sm uppercase tracking-widest border border-emerald-500/50">
                  Gemas
