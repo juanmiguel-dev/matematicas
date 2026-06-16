@@ -664,7 +664,27 @@ export default function GeometriaDimensional() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-900/50 text-emerald-300 font-bold text-sm uppercase tracking-widest border border-emerald-500/50">
               Gemas
             </div>
-            <h2 className="text-4xl lg:text-6xl font-bold font-sans text-white mb-8">Polígonos Irreductibles</h2>
+            <motion.h2 
+              animate={{ 
+                textShadow: [
+                  "0 0 5px #fff, 0 0 10px #fff, 0 0 20px #10b981, 0 0 40px #10b981, 0 0 80px #10b981",
+                  "0 0 2px #fff, 0 0 5px #fff, 0 0 10px #10b981, 0 0 20px #10b981, 0 0 40px #10b981",
+                  "0 0 5px #fff, 0 0 10px #fff, 0 0 20px #10b981, 0 0 40px #10b981, 0 0 80px #10b981",
+                  "0 0 2px #fff, 0 0 4px #fff, 0 0 8px #10b981, 0 0 15px #10b981, 0 0 30px #10b981",
+                  "0 0 5px #fff, 0 0 10px #fff, 0 0 20px #10b981, 0 0 40px #10b981, 0 0 80px #10b981"
+                ],
+                opacity: [1, 0.8, 1, 0.6, 1]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "linear",
+                times: [0, 0.1, 0.2, 0.8, 1]
+              }}
+              className="text-4xl lg:text-6xl font-bold font-sans text-white mb-8"
+            >
+              Polígonos Irreductibles
+            </motion.h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
               
