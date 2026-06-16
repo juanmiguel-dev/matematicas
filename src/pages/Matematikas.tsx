@@ -28,31 +28,28 @@ export default function Matematikas() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-32 flex flex-col lg:flex-row gap-16 lg:gap-12 items-start">
-        <div className="w-full lg:w-1/3 lg:sticky lg:top-32 text-center lg:text-left space-y-8 flex-shrink-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-[1.1] mb-6">
-              Descubre la <br/>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
-                belleza oculta
-              </span>
-            </h1>
-            <p className="text-lg text-slate-400 leading-relaxed max-w-md mx-auto lg:mx-0">
-              Bienvenido a MATEMATIKAS, un espacio interactivo para revelar los secretos de los números, geometría y lógica.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Modules Grid */}
-        <div className="w-full lg:w-2/3">
-
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {/* Hero Section & Modules Grid */}
+      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          {/* Title Header (Spans 2 columns on Desktop) */}
+          <div className="lg:col-span-2 flex flex-col justify-center text-center lg:text-left pr-0 lg:pr-12 mb-8 lg:mb-0">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-[1.1] mb-6">
+                Descubre la <br/>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+                  belleza oculta
+                </span>
+              </h1>
+              <p className="text-lg text-slate-400 leading-relaxed max-w-md mx-auto lg:mx-0">
+                Bienvenido a MATEMATIKAS, un espacio interactivo para revelar los secretos de los números, geometría y lógica.
+              </p>
+            </motion.div>
+          </div>
             {/* Taller Card */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -276,7 +273,6 @@ export default function Matematikas() {
                 </div>
               </Link>
             </motion.div>
-          </div>
         </div>
       </main>
     </div>
