@@ -233,6 +233,60 @@ const PrimosFundamentales3D = () => {
   );
 };
 
+// 4.5 Tarjeta Individual Fundamental
+const FundamentalCard = ({ num, color, desc, segments, name }: { num: number, color: string, desc: string, segments: number, name: string }) => {
+  return (
+    <div className="bg-slate-800 border border-slate-700 rounded-[2rem] p-6 shadow-xl flex flex-col h-[400px] w-full">
+      <div className="flex-1 w-full bg-slate-900/50 rounded-2xl overflow-hidden mb-6 relative border border-slate-700/50">
+        <Canvas camera={{ position: [0, 0, 8], fov: 40 }}>
+           <ambientLight intensity={0.8} />
+           <spotLight position={[10, 10, 10]} intensity={2} color="#fff" penumbra={1} />
+           <Float speed={2} rotationIntensity={1.5} floatIntensity={1.5}>
+              <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+                {segments === 2 ? (
+                   <cylinderGeometry args={[0.3, 0.3, 3, 16]} />
+                ) : (
+                   <cylinderGeometry args={[1.8, 1.8, 0.6, segments]} />
+                )}
+                <meshPhysicalMaterial 
+                  color={color} 
+                  emissive={color}
+                  emissiveIntensity={0.3}
+                  transmission={0.6} 
+                  opacity={0.9} 
+                  roughness={0.1}
+                  metalness={0.4}
+                  ior={1.5}
+                  transparent={true}
+                />
+              </mesh>
+              <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+                {segments === 2 ? (
+                   <cylinderGeometry args={[0.3, 0.3, 3, 16]} />
+                ) : (
+                   <cylinderGeometry args={[1.8, 1.8, 0.6, segments]} />
+                )}
+                <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.4} />
+              </mesh>
+           </Float>
+           <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
+        </Canvas>
+      </div>
+      <div>
+        <div className="text-3xl font-bold font-mono mb-1" style={{ color }}>
+          {num} = ({num})
+        </div>
+        <div className="text-sm font-bold text-white uppercase tracking-wider mb-2">
+          {name}
+        </div>
+        <div className="text-xs text-slate-400">
+          ANALYSIS: SINGULAR. Forma dimensional indivisible. {desc}.
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // 4. Espiral Aurea 3D (Geometría de Reposo vs Corriente de Intención)
 const EspiralAurea3D = () => {
   const group = useRef<THREE.Group>(null);
@@ -482,6 +536,23 @@ export default function GeometriaDimensional() {
              </div>
           </div>
         </Section>
+
+        {/* SLIDE 1.6: Tarjetas Individuales */}
+        <section className="relative w-full pb-20 z-10 px-6">
+          <div className="flex flex-wrap justify-center gap-8 w-full max-w-7xl mx-auto">
+            {[
+              { num: 2, color: "#ef4444", desc: "Línea (1D) pura y fundamental", segments: 2, name: "La Semilla Par" },
+              { num: 3, color: "#f97316", desc: "Triángulo dimensional base", segments: 3, name: "La Trinidad" },
+              { num: 5, color: "#eab308", desc: "Pentágono dinámico e irreducible", segments: 5, name: "El Quinteto" },
+              { num: 7, color: "#10b981", desc: "Heptágono de balance perfecto", segments: 7, name: "Gema Celestial" },
+              { num: 11, color: "#3b82f6", desc: "Hendecágono. Estructura de salto de magnitud", segments: 11, name: "El Portal Cristalino" }
+            ].map(p => (
+               <div key={p.num} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.4rem)] max-w-sm">
+                  <FundamentalCard {...p} />
+               </div>
+            ))}
+          </div>
+        </section>
 
         {/* SLIDE 2: 3D */}
         <Section>
