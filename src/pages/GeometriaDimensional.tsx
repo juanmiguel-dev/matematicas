@@ -479,28 +479,12 @@ const CelestialAstralGema = () => {
 };
 
 
-const FloatingSectionNav = () => {
-  const [activeSection, setActiveSection] = React.useState('primos');
 
+
+
+export default function GeometriaDimensional() {
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['primos', 'dim3', 'dim4', 'dim6', 'gemas', 'espiral'];
-      let current = 'primos';
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= window.innerHeight / 2) {
-            current = section;
-          }
-        }
-      }
-      setActiveSection(current);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.scrollTo(0, 0);
   }, []);
 
   const scrollTo = (id: string) => {
@@ -509,45 +493,6 @@ const FloatingSectionNav = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const navItems = [
-    { id: 'primos', label: 'Primos Fundamentales' },
-    { id: 'dim3', label: 'Prisma 3D' },
-    { id: 'dim4', label: 'Tesseracto 4D' },
-    { id: 'dim6', label: 'Hipercubo 6D' },
-    { id: 'gemas', label: 'Polígonos Irreductibles' },
-    { id: 'espiral', label: 'Espiral Áurea' }
-  ];
-
-  return (
-    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4">
-      {navItems.map((item) => (
-        <button
-          key={item.id}
-          onClick={() => scrollTo(item.id)}
-          className={`group relative flex items-center justify-end ${
-            activeSection === item.id ? 'opacity-100' : 'opacity-40 hover:opacity-100'
-          } transition-all duration-300`}
-        >
-          <span className="absolute right-8 bg-slate-800/90 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-lg border border-slate-700/50">
-            {item.label}
-          </span>
-          <div className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
-            activeSection === item.id 
-              ? 'bg-sky-400 scale-125 shadow-[0_0_12px_rgba(56,189,248,0.8)]' 
-              : 'bg-slate-400'
-          }`} />
-        </button>
-      ))}
-    </div>
-  );
-};
-
-
-export default function GeometriaDimensional() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="bg-slate-100 text-slate-900 overflow-x-hidden font-sans relative">
@@ -560,16 +505,22 @@ export default function GeometriaDimensional() {
 
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md bg-white/70 border-b border-sky-100 shadow-sm">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-sky-600 transition-colors font-medium">
-          <ArrowLeft className="w-4 h-4" /> Volver al Inicio
+        <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-sky-600 transition-colors font-medium whitespace-nowrap">
+          <ArrowLeft className="w-4 h-4" /> <span className="hidden md:inline">Inicio</span>
         </Link>
+        <div className="hidden lg:flex items-center gap-6">
+          <button onClick={() => scrollTo('primos')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">Primos</button>
+          <button onClick={() => scrollTo('dim3')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">3D</button>
+          <button onClick={() => scrollTo('dim4')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">4D</button>
+          <button onClick={() => scrollTo('dim6')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">6D</button>
+          <button onClick={() => scrollTo('gemas')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">Gemas</button>
+          <button onClick={() => scrollTo('espiral')} className="text-xs font-bold text-slate-500 hover:text-sky-600 uppercase tracking-widest transition-colors">Espiral</button>
+        </div>
         <div className="flex items-center gap-2 text-sky-700">
           <Hexagon className="w-5 h-5" />
-          <span className="font-mono text-xs uppercase tracking-widest font-bold">Hiperespacio</span>
+          <span className="font-mono text-xs uppercase tracking-widest font-bold hidden sm:inline">Hiperespacio</span>
         </div>
       </nav>
-
-      <FloatingSectionNav />
 
       <main className="relative z-10 w-full max-w-7xl mx-auto">
         {/* Hero section removed as per user request */}
@@ -692,7 +643,7 @@ export default function GeometriaDimensional() {
         </Section>
 
         {/* SLIDE 4: 6D */}
-        <Section>
+        <Section id="dim6">
           <div className="flex flex-col lg:flex-row items-center gap-12 bg-slate-900 rounded-[3rem] p-8 lg:p-12 shadow-2xl border border-slate-700 h-auto lg:h-[80vh]">
              <div className="flex-1 space-y-8 w-full">
                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-900 text-indigo-300 font-bold text-sm uppercase tracking-widest border border-indigo-700">
@@ -726,7 +677,7 @@ export default function GeometriaDimensional() {
         </Section>
 
         {/* SLIDE 4.5: GEMAS */}
-        <Section className="items-center w-full">
+        <Section id="gemas" className="items-center w-full">
           <div className="w-full space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-900/50 text-emerald-300 font-bold text-sm uppercase tracking-widest border border-emerald-500/50">
               Gemas
@@ -814,7 +765,7 @@ export default function GeometriaDimensional() {
         </Section>
 
         {/* SLIDE 5: Espiral Aurea (Geometria de Reposo vs Intention Current) */}
-        <section className="relative w-screen h-screen -ml-[calc(50vw-50%)] overflow-hidden bg-[#0b101e]">
+        <section id="espiral" className="relative w-screen h-screen -ml-[calc(50vw-50%)] overflow-hidden bg-[#0b101e]">
           {/* Background Canvas (Full Screen) */}
           <div className="absolute inset-0 w-full h-full cursor-move z-0">
             <Canvas camera={{ position: [20, 15, 25], fov: 45 }}>
