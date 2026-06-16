@@ -842,6 +842,7 @@ export default function GeometriaDimensional() {
 
             </div>
           </div>
+          </div>
         </Section>
 
         {/* SLIDE 5: Espiral Aurea (Geometria de Reposo vs Intention Current) */}
