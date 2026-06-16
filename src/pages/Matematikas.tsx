@@ -29,39 +29,39 @@ export default function Matematikas() {
       </header>
 
       {/* Hero Section */}
-      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-32">
-        <div className="max-w-3xl mx-auto text-center space-y-8">
+      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-32 flex flex-col lg:flex-row gap-16 lg:gap-12 items-start">
+        <div className="w-full lg:w-1/3 lg:sticky lg:top-32 text-center lg:text-left space-y-8 flex-shrink-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-indigo-300 mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-indigo-300 mb-6 mx-auto lg:mx-0">
               <Sparkles className="w-4 h-4" />
-              <span>Explora el universo de los números</span>
+              <span>Explora el universo</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[1.1] mb-6">
               Descubre la <br/>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
                 belleza oculta
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
-              Bienvenido a MATEMATIKAS, un espacio interactivo diseñado para revelar los secretos de los números, la geometría y la lógica a través de experiencias inmersivas.
+            <p className="text-lg text-slate-400 leading-relaxed max-w-md mx-auto lg:mx-0">
+              Bienvenido a MATEMATIKAS, un espacio interactivo para revelar los secretos de los números, geometría y lógica.
             </p>
           </motion.div>
         </div>
 
         {/* Modules Grid */}
-        <div className="mt-24 max-w-5xl mx-auto">
-          <div className="flex items-center justify-between mb-10">
+        <div className="w-full lg:w-2/3">
+          <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-white flex items-center gap-3">
               <BrainCircuit className="w-6 h-6 text-purple-400" />
               Módulos Disponibles
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Taller Card */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
