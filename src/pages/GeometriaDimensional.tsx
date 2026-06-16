@@ -926,12 +926,12 @@ export default function GeometriaDimensional() {
               </div>
               
               <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-full bg-black/50 rounded-3xl overflow-hidden cursor-move border border-pink-900/50 shadow-inner relative mt-8 lg:mt-0">
-                <Canvas camera={{ position: [0, 0, 11], fov: 45 }}>
+                <Canvas camera={{ position: [0, 0, 16], fov: 45 }}>
                   <color attach="background" args={['#2e0c1a']} />
                   <ambientLight intensity={0.5} />
                   <spotLight position={[10, 20, 10]} angle={0.4} penumbra={1} intensity={2.5} color="#fbcfe8" />
                   <spotLight position={[-10, -10, -10]} angle={0.4} penumbra={1} intensity={1.5} color="#db2777" />
-                  <Environment preset="sunset" />
+                  <Environment preset="dawn" />
                   <ConstanteEstructuraFinaGema />
                   <OrbitControls autoRotate autoRotateSpeed={1.2} enableZoom={true} />
                 </Canvas>
