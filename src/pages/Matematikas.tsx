@@ -61,7 +61,7 @@ export default function Matematikas() {
             >
               <Link 
                 to="/numeros-primos" 
-                className="group block relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 overflow-hidden"
+                className="group block relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 overflow-hidden h-full"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
@@ -73,12 +73,44 @@ export default function Matematikas() {
                   <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors">
                     Números Primos
                   </h3>
-                  <p className="text-slate-400 mb-8 line-clamp-2">
+                  <p className="text-slate-400 mb-8 line-clamp-3">
                     Descubre el Teorema Fundamental de la Aritmética construyendo números compuestos a partir de sus bloques fundamentales: los números primos.
                   </p>
                   
-                  <div className="flex items-center text-amber-400 font-medium group-hover:gap-2 transition-all">
+                  <div className="flex items-center text-amber-400 font-medium group-hover:gap-2 transition-all mt-auto">
                     <span>Ingresar al taller</span>
+                    <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* Geometria Dimensional Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Link 
+                to="/geometria-dimensional" 
+                className="group block relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 overflow-hidden h-full"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-sky-900/20 to-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center shadow-lg shadow-sky-500/20 mb-6 group-hover:scale-110 transition-transform duration-500">
+                    <Box className="w-6 h-6 text-white" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-sky-300 transition-colors">
+                    Geometría Dimensional
+                  </h3>
+                  <p className="text-slate-400 mb-8 line-clamp-3">
+                    Interactúa con prismas 3D, tesseractos 4D y proyecciones de hipercubos 6D. La topología matemática de la creación.
+                  </p>
+                  
+                  <div className="flex items-center text-sky-400 font-medium group-hover:gap-2 transition-all mt-auto">
+                    <span>Entrar al hiperespacio</span>
                     <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   </div>
                 </div>
@@ -89,7 +121,7 @@ export default function Matematikas() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
               <Link 
                 to="/lexicon" 
@@ -121,7 +153,7 @@ export default function Matematikas() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
               <Link 
                 to="/codigo-maquina" 
@@ -153,7 +185,7 @@ export default function Matematikas() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
             >
               <Link 
                 to="/gematria-vibracional" 
@@ -185,7 +217,7 @@ export default function Matematikas() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
             >
               <Link 
                 to="/p-vs-np" 
@@ -207,38 +239,6 @@ export default function Matematikas() {
                   
                   <div className="flex items-center text-amber-400 font-medium group-hover:gap-2 transition-all mt-auto">
                     <span>Cuestionar la realidad</span>
-                    <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Geometria Dimensional Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              <Link 
-                to="/geometria-dimensional" 
-                className="group block relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 overflow-hidden h-full"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-sky-900/20 to-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center shadow-lg shadow-sky-500/20 mb-6 group-hover:scale-110 transition-transform duration-500">
-                    <Box className="w-6 h-6 text-white" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-sky-300 transition-colors">
-                    Geometría Dimensional
-                  </h3>
-                  <p className="text-slate-400 mb-8 line-clamp-3">
-                    Interactúa con prismas 3D, tesseractos 4D y proyecciones de hipercubos 6D. La topología matemática de la creación.
-                  </p>
-                  
-                  <div className="flex items-center text-sky-400 font-medium group-hover:gap-2 transition-all mt-auto">
-                    <span>Entrar al hiperespacio</span>
                     <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   </div>
                 </div>
