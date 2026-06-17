@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Box, Hexagon, Layers, ZoomIn } from 'lucide-react';
+import { MatematikaLogo } from '../components/MatematikaLogo';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Float, Edges, Text, Line, Stars, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
@@ -621,9 +622,7 @@ export default function GeometriaDimensional() {
 
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md bg-white/70 border-b border-sky-100 shadow-sm">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-sky-600 transition-colors font-medium whitespace-nowrap">
-          <ArrowLeft className="w-4 h-4" /> <span className="hidden md:inline">Inicio</span>
-        </Link>
+        <MatematikaLogo moduleName="Geometría Dimensional" />
         <div className="hidden lg:flex items-center gap-6">
           {[
             { id: 'primos', label: 'Primos' },

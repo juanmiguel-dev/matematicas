@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Sparkles, BrainCircuit, BookOpen, ArrowRight, Box, Radio, Cpu, Split, Music, Binary } from 'lucide-react';
+import { Sparkles, BrainCircuit, BookOpen, ArrowRight, Box, Radio, Cpu, Split, Music, Binary, Layers } from 'lucide-react';
+import { MatematikaLogo } from '../components/MatematikaLogo';
 
 export default function Matematikas() {
   return (
@@ -13,14 +14,7 @@ export default function Matematikas() {
 
       {/* Header */}
       <header className="relative z-10 w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between border-b border-white/5">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <Binary className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
-            MATEMATIKAS
-          </span>
-        </div>
+        <MatematikaLogo />
         <div className="flex items-center gap-4">
           <Link to="/radiomatika" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-sm font-bold text-indigo-300">
             <Radio className="w-4 h-4" /> RADIOMATIKA
@@ -64,7 +58,7 @@ export default function Matematikas() {
                 
                 <div className="relative z-10">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20 mb-6 group-hover:scale-110 transition-transform duration-500">
-                    <span className="font-bold text-white text-2xl">7</span>
+                    <Layers className="w-6 h-6 text-white" />
                   </div>
                   
                   <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-amber-300 transition-colors">

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Play, Pause, SkipForward, SkipBack, Volume2, Radio, Disc3 } from 'lucide-react';
+import { MatematikaLogo } from '../components/MatematikaLogo';
 
 // Import audio files
 import audio1 from '../radiomatika/Cuánto_pesa_el_libre_albedrío.mp3';
@@ -114,9 +115,7 @@ export default function Radiomatika() {
 
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
-          <ArrowLeft className="w-4 h-4" /> Volver
-        </Link>
+        <MatematikaLogo moduleName="Radiomatika" />
         <div className="flex items-center gap-2 text-slate-300">
           <Radio className="w-5 h-5 text-indigo-400" />
           <span className="font-bold tracking-widest uppercase">Radiomatika</span>

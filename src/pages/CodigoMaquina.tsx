@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowLeft, Cpu, Flower2, Hand, Activity, Infinity as InfinityIcon, CircleDashed } from 'lucide-react';
+import { MatematikaLogo } from '../components/MatematikaLogo';
 
 // Reusable Section Component
 const Section = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
@@ -32,9 +33,7 @@ export default function CodigoMaquina() {
 
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-sm bg-[#0b101e]/50 border-b border-white/5">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
-          <ArrowLeft className="w-4 h-4" /> Volver al Inicio
-        </Link>
+        <MatematikaLogo moduleName="Código Máquina" />
         <div className="flex items-center gap-2 text-amber-400/80">
           <Cpu className="w-5 h-5" />
           <span className="font-mono text-xs uppercase tracking-widest">Sys.Boot</span>

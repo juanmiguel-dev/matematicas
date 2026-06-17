@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Binary, ArrowLeft, BookOpen, Fingerprint, Sparkles, Infinity, Hexagon } from 'lucide-react';
 import { lexiconData } from '../data/lexiconData';
+import { MatematikaLogo } from '../components/MatematikaLogo';
 
 export default function Lexicon() {
   const getIconForConcept = (id: string) => {
@@ -35,14 +36,7 @@ export default function Lexicon() {
       
       {/* Header */}
       <header className="relative z-10 w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between border-b border-white/5 sticky top-0 bg-slate-950/80 backdrop-blur-md">
-        <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <Binary className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
-            MATEMATIKAS
-          </span>
-        </Link>
+        <MatematikaLogo />
         <div className="flex items-center gap-2 text-indigo-400">
           <BookOpen className="w-5 h-5" />
           <span className="font-semibold tracking-wide uppercase text-sm">Glosario Cósmico</span>

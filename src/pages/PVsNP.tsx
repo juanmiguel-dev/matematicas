@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Split, Settings, Eye, Network, Scale, Sparkles, Activity } from 'lucide-react';
+import { MatematikaLogo } from '../components/MatematikaLogo';
 
 const Section = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
   <section className={`min-h-screen flex flex-col justify-center relative py-20 px-6 ${className}`}>
@@ -24,9 +25,7 @@ export default function PVsNP() {
 
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md bg-[#f2f1eb]/80 border-b border-slate-900/10">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium">
-          <ArrowLeft className="w-4 h-4" /> Volver al Inicio
-        </Link>
+        <MatematikaLogo moduleName="P vs NP" />
         <div className="flex items-center gap-2 text-amber-700">
           <Split className="w-5 h-5" />
           <span className="font-mono text-xs uppercase tracking-widest font-bold">P vs NP</span>

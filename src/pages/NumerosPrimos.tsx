@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import { MatematikaLogo } from "../components/MatematikaLogo";
+
 const PrimeBackground = () => {
   const [particles, setParticles] = useState<{id: number, x: number, y: number, size: number, duration: number, prime: number, delay: number}[]>([]);
 
@@ -158,19 +160,7 @@ export default function NumerosPrimos() {
         <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between gap-4">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-sm">
-              <span className="font-bold text-white text-lg">7</span>
-            </div>
-            <div>
-              <h1 className="text-base font-bold text-white leading-tight">
-                Números Primos
-              </h1>
-              <span className="text-[11px] text-slate-400 font-medium tracking-wide uppercase">
-                MATEMATIKAS
-              </span>
-            </div>
-          </Link>
+          <MatematikaLogo moduleName="Números Primos" />
 
           {/* Controls */}
           <div className="flex items-center gap-2.5">

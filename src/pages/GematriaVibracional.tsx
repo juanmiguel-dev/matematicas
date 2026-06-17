@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, Radio, Layers, Activity, SplitSquareHorizontal, Waves } from 'lucide-react';
+import { ArrowLeft, Radio, Search, Type, Infinity as InfinityIcon, Activity, Key } from 'lucide-react';
+import { MatematikaLogo } from '../components/MatematikaLogo';
 
 const Section = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
   <section className={`min-h-screen flex flex-col justify-center relative py-20 px-6 ${className}`}>
@@ -25,9 +26,7 @@ export default function GematriaVibracional() {
 
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md bg-[#050914]/60 border-b border-white/5">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
-          <ArrowLeft className="w-4 h-4" /> Volver al Inicio
-        </Link>
+        <MatematikaLogo moduleName="Gematría Vibracional" />
         <div className="flex items-center gap-2 text-teal-400/80">
           <Radio className="w-5 h-5" />
           <span className="font-mono text-xs uppercase tracking-widest">Resonancia</span>
