@@ -110,4 +110,24 @@
   .card-shadow-md {
     box-shadow: 0 2px 8px rgba(0,0,0,0.07), 0 8px 32px rgba(0,0,0,0.07);
   }
+
+  /* Reducción de tamaños en mobile según lo solicitado (40% titulos, 14% texto) */
+  @media (max-width: 767px) {
+    /* TITULOS (-40% => * 0.6) */
+    [class*="text-3xl"] { font-size: 1.125rem !important; line-height: 1.35rem !important; }
+    [class*="text-4xl"] { font-size: 1.35rem !important; line-height: 1.5rem !important; }
+    [class*="text-5xl"] { font-size: 1.8rem !important; line-height: 1 !important; }
+    [class*="text-6xl"] { font-size: 2.25rem !important; line-height: 1 !important; }
+    [class*="text-7xl"] { font-size: 2.7rem !important; line-height: 1 !important; }
+    [class*="text-8xl"] { font-size: 3.6rem !important; line-height: 1 !important; }
+    [class*="text-9xl"] { font-size: 4.8rem !important; line-height: 1 !important; }
+  
+    /* TEXTO (-14% => * 0.86) */
+    [class*="text-xs"] { font-size: 0.645rem !important; line-height: 0.86rem !important; }
+    [class*="text-sm"] { font-size: 0.7525rem !important; line-height: 1.075rem !important; }
+    [class*="text-base"] { font-size: 0.86rem !important; line-height: 1.29rem !important; }
+    [class*="text-lg"] { font-size: 0.9675rem !important; line-height: 1.505rem !important; }
+    [class*="text-xl"] { font-size: 1.075rem !important; line-height: 1.505rem !important; }
+    [class*="text-2xl"] { font-size: 1.29rem !important; line-height: 1.72rem !important; }
+  }
 }
