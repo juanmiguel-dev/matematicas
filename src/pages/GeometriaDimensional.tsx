@@ -24,7 +24,7 @@ const Canvas = (props: React.ComponentProps<typeof FiberCanvas>) => {
 
   return (
     <div ref={containerRef} className="w-full h-full" style={{ position: 'relative' }}>
-      {isVisible && <FiberCanvas {...props}>{props.children}</FiberCanvas>}
+      {isVisible && <FiberCanvas dpr={[1, 1.5]} {...props}>{props.children}</FiberCanvas>}
     </div>
   );
 };
@@ -83,12 +83,11 @@ const PrimeBackground = () => {
 // Glass material for cubes
 const glassMaterial = new THREE.MeshPhysicalMaterial({
   color: '#e2f8ff',
-  transmission: 0.9,
-  opacity: 1,
-  metalness: 0,
+  transmission: 0, // Disabled heavy physical transmission
+  opacity: 0.35,
+  metalness: 0.1,
   roughness: 0.1,
-  ior: 1.5,
-  thickness: 0.5,
+  envMapIntensity: 1.5,
   side: THREE.DoubleSide,
   transparent: true
 });
@@ -265,11 +264,11 @@ const PrimosFundamentales3D = () => {
                 color={p.color} 
                 emissive={p.color}
                 emissiveIntensity={0.2}
-                transmission={0.5} 
-                opacity={0.9} 
+                transmission={0} 
+                opacity={0.45} 
                 roughness={0.1}
                 metalness={0.3}
-                ior={1.5}
+                
                 transparent={true}
               />
             </mesh>
@@ -280,7 +279,7 @@ const PrimosFundamentales3D = () => {
               ) : (
                  <cylinderGeometry args={[1.2, 1.2, 0.5, p.segments]} />
               )}
-              <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.3} />
+              <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.45} />
             </mesh>
             
             {/* Prime Number Text */}
@@ -314,19 +313,19 @@ const FundamentalCard = ({ num, color, desc, segments, name }: { num: number, co
                     <sphereGeometry args={[1.8, segments, 4]} />
                     <meshPhysicalMaterial 
                       color={color} emissive={color} emissiveIntensity={0.4}
-                      transmission={0.8} opacity={1} roughness={0} metalness={0.2} ior={2.2} thickness={1.5} side={THREE.DoubleSide} transparent
+                      transmission={0} opacity={0.45} roughness={0} metalness={0.2}   side={THREE.DoubleSide} transparent
                     />
                   </mesh>
                   <mesh scale={0.7}>
                     <sphereGeometry args={[1.8, segments, 3]} />
                     <meshPhysicalMaterial 
                       color="#ffffff" emissive={color} emissiveIntensity={1}
-                      transmission={0.2} roughness={0} metalness={0.8} transparent opacity={0.9}
+                      transmission={0} roughness={0} metalness={0.8} transparent opacity={0.45}
                     />
                   </mesh>
                   <mesh scale={1.05}>
                     <sphereGeometry args={[1.8, segments, 4]} />
-                    <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.3} />
+                    <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.45} />
                   </mesh>
                 </group>
               ) : (
@@ -341,11 +340,11 @@ const FundamentalCard = ({ num, color, desc, segments, name }: { num: number, co
                       color={color} 
                       emissive={color}
                       emissiveIntensity={0.3}
-                      transmission={0.6} 
-                      opacity={0.9} 
+                      transmission={0} 
+                      opacity={0.45} 
                       roughness={0.1}
                       metalness={0.4}
-                      ior={1.5}
+                      
                       transparent={true}
                     />
                   </mesh>
@@ -355,7 +354,7 @@ const FundamentalCard = ({ num, color, desc, segments, name }: { num: number, co
                     ) : (
                        <cylinderGeometry args={[1.8, 1.8, 0.6, segments]} />
                     )}
-                    <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.4} />
+                    <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.45} />
                   </mesh>
                 </>
               )}
@@ -472,12 +471,12 @@ const CrisoprasaAstralGema = () => {
             color="#10b981"
             emissive="#064e3b"
             emissiveIntensity={0.3}
-            transmission={0.9}
-            opacity={1}
+            transmission={0}
+            opacity={0.45}
             roughness={0}
             metalness={0.1}
-            ior={2.4}
-            thickness={1}
+            
+            
             side={THREE.DoubleSide}
             transparent
           />
@@ -488,16 +487,16 @@ const CrisoprasaAstralGema = () => {
             color="#34d399"
             emissive="#059669"
             emissiveIntensity={0.6}
-            transmission={0.5}
+            transmission={0}
             roughness={0}
             metalness={0.5}
             transparent
-            opacity={0.8}
+            opacity={0.45}
           />
         </mesh>
         <mesh scale={[1.02, 1.22, 1.02]}>
           <icosahedronGeometry args={[3, 0]} />
-          <meshBasicMaterial color="#6ee7b7" wireframe transparent opacity={0.3} />
+          <meshBasicMaterial color="#6ee7b7" wireframe transparent opacity={0.45} />
         </mesh>
       </Float>
     </group>
@@ -524,12 +523,12 @@ const CelestialAstralGema = () => {
             color="#0ea5e9"
             emissive="#0369a1"
             emissiveIntensity={0.4}
-            transmission={0.9}
-            opacity={1}
+            transmission={0}
+            opacity={0.45}
             roughness={0}
             metalness={0.2}
-            ior={2.2}
-            thickness={1.5}
+            
+            
             side={THREE.DoubleSide}
             transparent
           />
@@ -540,16 +539,16 @@ const CelestialAstralGema = () => {
             color="#38bdf8"
             emissive="#0284c7"
             emissiveIntensity={0.7}
-            transmission={0.4}
+            transmission={0}
             roughness={0}
             metalness={0.6}
             transparent
-            opacity={0.9}
+            opacity={0.45}
           />
         </mesh>
         <mesh scale={[1.12, 1.12, 1.12]}>
           <icosahedronGeometry args={[3, 1]} />
-          <meshBasicMaterial color="#7dd3fc" wireframe transparent opacity={0.2} />
+          <meshBasicMaterial color="#7dd3fc" wireframe transparent opacity={0.45} />
         </mesh>
       </Float>
     </group>
@@ -580,12 +579,12 @@ const ConstanteEstructuraFinaGema = () => {
             color="#db2777"
             emissive="#9d174d"
             emissiveIntensity={0.4}
-            transmission={0.9}
-            opacity={1}
+            transmission={0}
+            opacity={0.45}
             roughness={0}
             metalness={0.2}
-            ior={2.2}
-            thickness={1.5}
+            
+            
             side={THREE.DoubleSide}
             transparent
           />
@@ -596,16 +595,16 @@ const ConstanteEstructuraFinaGema = () => {
             color="#fbcfe8"
             emissive="#be185d"
             emissiveIntensity={0.7}
-            transmission={0.4}
+            transmission={0}
             roughness={0}
             metalness={0.6}
             transparent
-            opacity={0.9}
+            opacity={0.45}
           />
         </mesh>
         <mesh scale={[1.12, 1.12, 1.12]}>
           <icosahedronGeometry args={[3, 2]} />
-          <meshBasicMaterial color="#fce7f3" wireframe transparent opacity={0.2} />
+          <meshBasicMaterial color="#fce7f3" wireframe transparent opacity={0.45} />
         </mesh>
       </Float>
     </group>
