@@ -102,7 +102,13 @@ export const FreqToNote = () => {
 
 // --- INTERACTIVE TUNER (COMMA) ---
 export const InteractiveTuner = () => {
-  const baseFreq = 110; // A2 to make 7 octaves fit below 20kHz
+  const baseFreq = 220; // A3 (220 Hz)
+  
+  // La Coma Pitagórica es la diferencia entre subir 12 quintas y bajar 7 octavas
+  // Frecuencia 1: Nota original (A3)
+  const f1 = baseFreq;
+  // Frecuencia 2: Nota después de 12 quintas (reduciéndola 7 octavas para compararla con la original)
+  const f2 = baseFreq * Math.pow(1.5, 12) * Math.pow(0.5, 7);
   
   const playComparison = () => {
     try {
@@ -111,36 +117,37 @@ export const InteractiveTuner = () => {
       const osc2 = ctx.createOscillator();
       const gain = ctx.createGain();
       
-      osc1.frequency.value = baseFreq * Math.pow(2, 7); 
-      osc2.frequency.value = baseFreq * Math.pow(1.5, 12);
+      osc1.frequency.value = f1; 
+      osc2.frequency.value = f2;
       
       osc1.connect(gain);
       osc2.connect(gain);
       gain.connect(ctx.destination);
       
       gain.gain.setValueAtTime(0.05, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 4);
+      // Mantener el sonido durante 6 segundos para que el batido sea bien claro
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 6);
       
       osc1.start();
       osc2.start();
-      osc1.stop(ctx.currentTime + 4);
-      osc2.stop(ctx.currentTime + 4);
+      osc1.stop(ctx.currentTime + 6);
+      osc2.stop(ctx.currentTime + 6);
     } catch (e) { console.warn("Audio blocked"); }
   };
 
   return (
     <div className="bg-[#11131a] border border-white/5 rounded-3xl p-6 shadow-2xl flex flex-col items-center text-center mt-8 w-full max-w-md mx-auto relative z-10">
       <h3 className="text-xl font-bold font-serif mb-2 text-slate-200">El Batido de la Coma</h3>
-      <p className="text-sm text-slate-400 mb-6">Al reproducir ambas frecuencias matemáticas simultáneamente, la ligera diferencia genera una "pulsación" o batido claramente audible. Es el sonido de la imperfección matemática.</p>
+      <p className="text-sm text-slate-400 mb-6">Si afinamos apilando 12 quintas perfectas y regresamos a la octava original, la nota no coincide. Esta pequeñísima diferencia genera un "batido" (wah-wah) rítmico audible.</p>
       
       <div className="flex justify-center gap-4 mb-6 w-full">
         <div className="p-3 bg-slate-900/50 rounded-xl border border-white/5 flex-1">
-          <div className="text-[10px] font-mono text-slate-500 uppercase mb-1">7 Octavas</div>
-          <div className="text-xl font-bold text-white">14080 <span className="text-xs text-slate-500">Hz</span></div>
+          <div className="text-[10px] font-mono text-slate-500 uppercase mb-1">Nota Base (A3)</div>
+          <div className="text-xl font-bold text-white">{f1.toFixed(2)} <span className="text-xs text-slate-500">Hz</span></div>
         </div>
         <div className="p-3 bg-slate-900/50 rounded-xl border border-white/5 flex-1">
-          <div className="text-[10px] font-mono text-slate-500 uppercase mb-1">12 Quintas</div>
-          <div className="text-xl font-bold text-fuchsia-400">14255.22 <span className="text-xs text-fuchsia-500/50">Hz</span></div>
+          <div className="text-[10px] font-mono text-slate-500 uppercase mb-1">Círculo de 12 Quintas</div>
+          <div className="text-xl font-bold text-fuchsia-400">{f2.toFixed(2)} <span className="text-xs text-fuchsia-500/50">Hz</span></div>
         </div>
       </div>
       
