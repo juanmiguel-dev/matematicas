@@ -381,7 +381,15 @@ const FundamentalCard = ({ num, color, desc, segments, name }: { num: number, co
 // 4. Espiral Aurea 3D (Geometría de Reposo vs Corriente de Intención)
 const EspiralAurea3D = () => {
   const group = useRef<THREE.Group>(null);
+  const [isMobile, setIsMobile] = useState(false);
   
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useFrame((state) => {
     if (group.current) {
       group.current.rotation.y = state.clock.elapsedTime * 0.05;
@@ -415,9 +423,13 @@ const EspiralAurea3D = () => {
   return (
     <group ref={group} position={[0, -4, 0]}>
       {/* 3D Grid planes to simulate the blueprint aesthetic */}
-      <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[0, 0, 0]} />
-      <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[0, 15, -15]} rotation={[Math.PI/2, 0, 0]} />
-      <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[-15, 15, 0]} rotation={[0, 0, Math.PI/2]} />
+      {!isMobile && (
+        <>
+          <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[0, 0, 0]} />
+          <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[0, 15, -15]} rotation={[Math.PI/2, 0, 0]} />
+          <gridHelper args={[30, 30, '#475569', '#1e293b']} position={[-15, 15, 0]} rotation={[0, 0, Math.PI/2]} />
+        </>
+      )}
       
       {/* Golden Spiral */}
       <Line points={spiralPoints} color="#fbbf24" lineWidth={3} />
