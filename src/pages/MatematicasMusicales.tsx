@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, Music, Activity } from 'lucide-react';
 import { MatematikaLogo } from '../components/MatematikaLogo';
+import { GlossaryTooltip, FreqToNote, InteractiveTuner, RhythmVisualizer, ChladniPlate3D } from '../components/MusicInteractive';
 
 const Section = ({ id, children, className = "" }: { id?: string, children: React.ReactNode, className?: string }) => (
   <section id={id} className={`min-h-screen flex flex-col justify-center relative py-20 px-6 ${className}`}>
@@ -20,7 +21,7 @@ export default function MatematicasMusicales() {
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
-      const sections = ['hero', 'monocordio', 'serie-armonica', 'coma', 'fibonacci', 'interferencia', 'cimatica'];
+      const sections = ['hero', 'monocordio', 'frecuencia-nota', 'serie-armonica', 'percepcion', 'coma', 'fibonacci', 'interferencia', 'ritmo', 'cimatica', 'historia'];
       let current = 'hero';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -72,11 +73,15 @@ export default function MatematicasMusicales() {
           {[
             { id: 'hero', label: 'Inicio' },
             { id: 'monocordio', label: 'Pitágoras' },
+            { id: 'frecuencia-nota', label: 'Notas' },
             { id: 'serie-armonica', label: 'Armónicos' },
+            { id: 'percepcion', label: 'Percepción' },
             { id: 'coma', label: 'Coma' },
             { id: 'fibonacci', label: 'Áurea' },
             { id: 'interferencia', label: 'Interferencia' },
-            { id: 'cimatica', label: 'Cimática' }
+            { id: 'ritmo', label: 'Ritmo' },
+            { id: 'cimatica', label: 'Cimática' },
+            { id: 'historia', label: 'Historia' }
           ].map((item) => (
             <button 
               key={item.id}
@@ -147,7 +152,7 @@ export default function MatematicasMusicales() {
             >
               <h2 className="text-4xl md:text-5xl font-bold font-serif">El Monocordio <br/><span className="text-slate-400 italic font-light">de Pitágoras</span></h2>
               <p className="text-lg text-slate-400 leading-relaxed">
-                Hace más de 2500 años, Pitágoras descubrió que los intervalos musicales agradables al oído (consonantes) correspondían a fracciones matemáticas simples de la longitud de una cuerda vibrante.
+                Hace más de 2500 años, Pitágoras descubrió que los intervalos musicales <GlossaryTooltip term="Consonancia" definition="Combinación de notas que suena estable y agradable, derivada de proporciones matemáticas simples.">agradables al oído (consonantes)</GlossaryTooltip> correspondían a fracciones matemáticas simples de la longitud de una cuerda vibrante.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
                 Al dividir la cuerda en proporciones enteras exactas (1:2, 2:3, 3:4), nacen los pilares fundamentales de la armonía.
@@ -231,6 +236,25 @@ export default function MatematicasMusicales() {
         </Section>
 
         {/* SLIDE 2B: La Serie Armonica */}
+        
+        {/* SLIDE: Frecuencia a Nota */}
+        <Section id="frecuencia-nota" className="items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6">De la Física a la <br/><span className="text-slate-400 italic font-light">Música Práctica</span></h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Descubre cómo las ondas físicas (medidas en Hertzios) se traducen en el alfabeto musical que conocemos.
+            </p>
+          </motion.div>
+          <div className="w-full max-w-3xl">
+            <FreqToNote />
+          </div>
+        </Section>
+
         <Section id="serie-armonica">
           <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
             <motion.div 
@@ -239,7 +263,7 @@ export default function MatematicasMusicales() {
               viewport={{ once: true }}
               className="flex-1 space-y-6"
             >
-              <h2 className="text-4xl md:text-5xl font-bold font-serif">La Serie Armónica <br/><span className="text-slate-400 italic font-light">Los Sobretonos</span></h2>
+              <h2 className="text-4xl md:text-5xl font-bold font-serif">La Serie Armónica <br/><span className="text-slate-400 italic font-light">Los <GlossaryTooltip term="Sobretono" definition="Cualquier frecuencia mayor a la fundamental que resuena simultáneamente.">Sobretonos</GlossaryTooltip></span></h2>
               <p className="text-lg text-slate-400 leading-relaxed">
                 Cuando tocas una sola nota, el universo no genera una sola frecuencia. Se desata una serie matemática infinita: la fundamental ($f$), el doble ($2f$), el triple ($3f$).
               </p>
@@ -312,6 +336,49 @@ export default function MatematicasMusicales() {
         </Section>
 
         {/* SLIDE 2C: La Coma Pitagorica */}
+        
+        {/* SLIDE: Percepcion */}
+        <Section id="percepcion">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex-1 space-y-6"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold font-serif">El Oído como Analizador <br/><span className="text-slate-400 italic font-light">de Fourier</span></h2>
+              <p className="text-lg text-slate-400 leading-relaxed">
+                Nuestra cóclea, en el oído interno, es un milagro matemático. Funciona como un prisma acústico que descompone las ondas de sonido complejas en frecuencias senoidales simples (armónicos), tal como postula la transformada de Fourier.
+              </p>
+              <p className="text-lg text-slate-400 leading-relaxed">
+                Además, no percibimos el volumen de forma lineal. Según las curvas de igual sonoridad (Fletcher-Munson), nuestro oído es altamente sensible a las frecuencias medias (donde reside la voz humana) y muy deficiente en los bajos extremos.
+              </p>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex-1 w-full bg-[#11131a] rounded-3xl p-8 border border-white/5 relative shadow-2xl"
+            >
+               {/* Abstract cochlea / fourier visual */}
+               <svg viewBox="0 0 400 300" className="w-full h-full stroke-fuchsia-400 fill-none opacity-80" preserveAspectRatio="xMidYMid meet">
+                 {/* Complex wave entering */}
+                 <path d="M0,150 Q50,50 100,150 T200,150" strokeWidth="3" className="stroke-white" />
+                 {/* Prism/Ear icon abstract */}
+                 <polygon points="200,100 250,200 150,200" fill="rgba(255,255,255,0.05)" stroke="white" strokeWidth="1" />
+                 {/* Split sine waves outputting */}
+                 <path d="M225,150 Q275,100 325,150 T400,150" strokeWidth="1" className="stroke-fuchsia-400" />
+                 <path d="M225,150 Q250,120 275,150 T325,150 T375,150 T400,150" strokeWidth="1" className="stroke-indigo-400" />
+                 <path d="M225,150 Q237,130 250,150 T275,150 T300,150 T325,150 T350,150 T375,150 T400,150" strokeWidth="1" className="stroke-purple-400" />
+                 
+                 <text x="350" y="110" fill="white" fontSize="12" className="font-mono">Altas (Agudos)</text>
+                 <text x="350" y="160" fill="white" fontSize="12" className="font-mono">Medias (Voz)</text>
+                 <text x="350" y="210" fill="white" fontSize="12" className="font-mono">Bajas (Graves)</text>
+               </svg>
+            </motion.div>
+          </div>
+        </Section>
+
         <Section id="coma" className="items-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -326,53 +393,7 @@ export default function MatematicasMusicales() {
             </p>
           </motion.div>
 
-          <div className="relative w-full max-w-md mx-auto aspect-square flex items-center justify-center bg-[#11131a] rounded-full border border-white/5 shadow-[0_0_50px_rgba(192,132,252,0.1)]">
-            <motion.svg viewBox="0 0 200 200" className="w-full h-full overflow-visible p-8">
-              <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 4" />
-              
-              <motion.path 
-                d="M100,20 A80,80 0 0,1 180,100 A80,80 0 0,1 100,180 A80,80 0 0,1 20,100 A80,80 0 0,1 100,22" 
-                fill="none" 
-                stroke="url(#spiralGrad)" 
-                strokeWidth="3"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 4, ease: "easeInOut" }}
-              />
-              <defs>
-                <linearGradient id="spiralGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#c084fc" />
-                  <stop offset="100%" stopColor="#f472b6" />
-                </linearGradient>
-              </defs>
-              
-              <motion.circle 
-                cx="100" cy="21" r="3" fill="#f472b6"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 4 }}
-              />
-              <motion.circle 
-                cx="100" cy="20" r="2" fill="white"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 4.2 }}
-              />
-              <motion.text 
-                x="100" y="5" fill="#f472b6" fontSize="8" textAnchor="middle" className="font-bold"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 4.5 }}
-              >
-                Coma Pitagórica
-              </motion.text>
-            </motion.svg>
-          </div>
+          <InteractiveTuner />
         </Section>
 
         {/* SLIDE 3: La Proporcion Aurea */}
@@ -528,6 +549,25 @@ export default function MatematicasMusicales() {
         </Section>
 
         {/* SLIDE 4: Cimática */}
+        
+        {/* SLIDE: Ritmo */}
+        <Section id="ritmo" className="items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6">El Ritmo es una <br/><span className="text-slate-400 italic font-light">Fracción del Tiempo</span></h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Los compases musicales (3/4, 4/4) organizan matemáticamente el tiempo. Al superponer fracciones diferentes, creamos polirritmias complejas.
+            </p>
+          </motion.div>
+          <div className="w-full max-w-4xl">
+            <RhythmVisualizer />
+          </div>
+        </Section>
+
         <Section id="cimatica" className="items-center">
            <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -555,34 +595,67 @@ export default function MatematicasMusicales() {
                 transition={{ delay: idx * 0.2 }}
                 className="bg-[#11131a] rounded-3xl p-8 border border-white/5 flex flex-col items-center text-center shadow-lg group hover:border-white/10 transition-colors"
               >
-                <div className="w-48 h-48 relative flex items-center justify-center mb-8">
-                  {/* Plate background */}
-                  <div className="absolute inset-0 bg-slate-900 rounded-full shadow-inner border border-white/5" />
-                  
-                  {/* Cymatic Pattern (Abstract SVG) */}
-                  <motion.svg viewBox="0 0 100 100" className="w-full h-full absolute inset-0 text-white/40 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
-                    {[...Array(pattern.nodes)].map((_, i) => (
-                      <g key={i} transform={`rotate(${(360 / pattern.nodes) * i} 50 50)`}>
-                        <ellipse cx="50" cy="25" rx="15" ry="25" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                        <circle cx="50" cy="10" r="2" fill="currentColor" />
-                        <path d="M 50 50 L 50 15" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
-                      </g>
-                    ))}
-                    <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="1" />
-                    <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
-                  </motion.svg>
-                  
-                  {/* Active scanning effect */}
-                  <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,transparent_0_340deg,rgba(192,132,252,0.3)_360deg)] animate-[spin_4s_linear_infinite] mix-blend-screen opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="w-full h-48 relative mb-8 rounded-full overflow-hidden border border-white/10 shadow-inner">
+                  <ChladniPlate3D activeNodes={4} />
                 </div>
-                
                 <h3 className={`text-3xl font-bold font-serif mb-2 ${pattern.color}`}>{pattern.freq}</h3>
                 <p className="text-slate-400 text-sm tracking-wide uppercase">{pattern.desc}</p>
               </motion.div>
             ))}
           </div>
-        </Section>
         
+          <div className="mt-12 w-full max-w-3xl mx-auto p-6 bg-fuchsia-900/10 border border-fuchsia-500/20 rounded-2xl text-center">
+            <h4 className="text-fuchsia-400 font-bold mb-2">✦ Un Apunte sobre las Frecuencias "Solfeggio" (432Hz, 528Hz)</h4>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Aunque la cultura popular atribuye propiedades mágicas o curativas a estas afinaciones, no existe evidencia científica rigurosa que lo respalde. Sin embargo, su valor como <strong>fenómeno estético y cultural</strong> es innegable. Preferir A=432Hz sobre A=440Hz es una elección subjetiva de color armónico, una fascinación humana por alinear nuestro arte con números simbólicamente "bellos".
+            </p>
+          </div>
+
+        </Section>
+        {/* SLIDE: Historia */}
+        <Section id="historia" className="items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6">Línea del Tiempo <br/><span className="text-slate-400 italic font-light">Matemático-Musical</span></h2>
+          </motion.div>
+          
+          <div className="relative w-full max-w-4xl mx-auto">
+            {/* Vertical Line */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-fuchsia-500/0 via-fuchsia-500/50 to-fuchsia-500/0 -translate-x-1/2" />
+            
+            <div className="space-y-20 relative z-10">
+              {[
+                { year: "500 a.C.", name: "Pitágoras", desc: "Descubrimiento de las proporciones enteras (1:2, 2:3) en el monocordio. Nace la afinación pitagórica." },
+                { year: "1619", name: "Johannes Kepler", desc: "Publica 'Harmonices Mundi', conectando las órbitas planetarias (Geometría) con proporciones musicales (Armonía de las Esferas)." },
+                { year: "1739", name: "Leonhard Euler", desc: "Desarrolla la primera teoría matemática de la música (Tentamen novae theoriae musicae), asignando 'grados de suavidad' a los acordes." },
+                { year: "1863", name: "Hermann von Helmholtz", desc: "Funda la psicoacústica moderna al publicar 'Sobre las sensaciones de tono', conectando física, anatomía del oído y percepción musical." },
+              ].map((item, idx) => (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className={`flex items-center gap-8 w-full ${idx % 2 === 0 ? 'flex-row-reverse' : ''}`}
+                >
+                  <div className={`flex-1 ${idx % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                    <div className="text-fuchsia-400 font-mono font-bold mb-1">{item.year}</div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{item.name}</h3>
+                    <p className="text-slate-400">{item.desc}</p>
+                  </div>
+                  <div className="w-12 h-12 shrink-0 rounded-full bg-[#11131a] border-2 border-fuchsia-500 flex items-center justify-center z-10 shadow-[0_0_15px_rgba(217,70,239,0.3)]">
+                    <div className="w-3 h-3 rounded-full bg-white" />
+                  </div>
+                  <div className="flex-1" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
       </main>
     </div>
   );
