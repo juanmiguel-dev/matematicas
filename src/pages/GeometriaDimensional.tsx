@@ -3,9 +3,31 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Box, Hexagon, Layers, ZoomIn } from 'lucide-react';
 import { MatematikaLogo } from '../components/MatematikaLogo';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas as FiberCanvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Float, Edges, Text, Line, Stars, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
+
+const Canvas = (props: React.ComponentProps<typeof FiberCanvas>) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { rootMargin: '400px' }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="w-full h-full" style={{ position: 'relative' }}>
+      {isVisible && <FiberCanvas {...props}>{props.children}</FiberCanvas>}
+    </div>
+  );
+};
 
 const Section = ({ children, className = "", id }: { children: React.ReactNode, className?: string, id?: string }) => (
   <section id={id} className={`min-h-screen flex flex-col justify-center relative py-20 px-6 ${className}`}>
