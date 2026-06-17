@@ -4,9 +4,14 @@ import { Binary } from 'lucide-react';
 
 interface Props {
   moduleName?: string;
+  theme?: 'light' | 'dark';
 }
 
-export const MatematikaLogo: React.FC<Props> = ({ moduleName }) => {
+export const MatematikaLogo: React.FC<Props> = ({ moduleName, theme = 'dark' }) => {
+  const textColor = theme === 'light' ? 'text-slate-900' : 'text-white';
+  const subtitleColor = theme === 'light' ? 'text-slate-500' : 'text-slate-400';
+  const gradientText = theme === 'light' ? 'from-slate-900 to-slate-600' : 'from-white to-white/70';
+
   return (
     <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
       <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0">
@@ -14,15 +19,15 @@ export const MatematikaLogo: React.FC<Props> = ({ moduleName }) => {
       </div>
       {moduleName ? (
         <div className="flex flex-col justify-center">
-          <h1 className="text-base font-bold text-white leading-tight">
+          <h1 className={`text-base font-bold ${textColor} leading-tight`}>
             MATEMATIKAS
           </h1>
-          <span className="text-[11px] text-slate-400 font-medium tracking-wide uppercase">
+          <span className={`text-[11px] ${subtitleColor} font-medium tracking-wide uppercase`}>
             {moduleName}
           </span>
         </div>
       ) : (
-        <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+        <span className={`text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r ${gradientText}`}>
           MATEMATIKAS
         </span>
       )}

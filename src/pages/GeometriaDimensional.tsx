@@ -622,7 +622,7 @@ export default function GeometriaDimensional() {
 
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md bg-white/70 border-b border-sky-100 shadow-sm">
-        <MatematikaLogo moduleName="Geometría Dimensional" />
+        <MatematikaLogo moduleName="Geometría Dimensional" theme="light" />
         <div className="hidden lg:flex items-center gap-6">
           {[
             { id: 'primos', label: 'Primos' },

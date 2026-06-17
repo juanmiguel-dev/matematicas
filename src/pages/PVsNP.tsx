@@ -25,7 +25,7 @@ export default function PVsNP() {
 
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md bg-[#f2f1eb]/80 border-b border-slate-900/10">
-        <MatematikaLogo moduleName="P vs NP" />
+        <MatematikaLogo moduleName="P vs NP" theme="light" />
         <div className="flex items-center gap-2 text-amber-700">
           <Split className="w-5 h-5" />
           <span className="font-mono text-xs uppercase tracking-widest font-bold">P vs NP</span>

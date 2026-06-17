@@ -39,8 +39,9 @@ export default function Matematikas() {
                   belleza oculta
                 </span>
               </h1>
-              <p className="text-lg text-slate-400 leading-relaxed max-w-md mx-auto">
-                Bienvenido a MATEMATIKAS, un espacio interactivo para revelar los secretos de los números, geometría y lógica.
+              <p className="text-lg text-slate-400 leading-relaxed max-w-xl mx-auto">
+                Bienvenido a MATEMATIKAS, un espacio interactivo <br className="hidden sm:block" />
+                para revelar los secretos de los números, geometría y lógica.
               </p>
             </motion.div>
           </div>
