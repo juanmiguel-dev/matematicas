@@ -193,7 +193,7 @@ export default function NumerosPrimos() {
         <section className="space-y-5">
           
           {/* Chapter timeline */}
-          <div className="bg-[#111] rounded-2xl border border-white/10 card-shadow p-3 overflow-x-auto relative z-10">
+          <div className="bg-[#111] rounded-2xl border border-white/10 card-shadow px-3 pt-3 pb-8 overflow-x-auto relative z-10">
             <div className="flex justify-between w-full min-w-[720px] px-2 items-center">
               <span className="text-[11px] font-mono text-slate-400 mr-3 uppercase tracking-wide shrink-0">Capítulos:</span>
               
