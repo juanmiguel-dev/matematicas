@@ -61,7 +61,7 @@ export const FreqToNote = () => {
   return (
     <div className="bg-[#11131a] border border-white/5 rounded-3xl p-6 shadow-2xl">
       <h3 className="text-xl font-bold font-serif mb-4 text-slate-200">De Frecuencia a Nota</h3>
-      <p className="text-slate-400 text-sm mb-6">El temperamento igual divide la octava en 12 pasos iguales de $\sqrt[12]{2}$.</p>
+      <p className="text-slate-400 text-sm mb-6">El temperamento igual divide la octava en 12 pasos iguales de <sup>12</sup>&radic;2.</p>
       <div className="flex flex-col md:flex-row gap-6 items-center">
         <div className="flex-1 w-full">
           <label className="text-xs font-mono text-slate-400 mb-2 block uppercase">Frecuencia (Hz)</label>
@@ -218,7 +218,7 @@ export const RhythmVisualizer = () => {
       <div className="flex justify-between items-center mb-6">
         <div>
           <h3 className="text-2xl font-bold font-serif text-slate-200">Polirritmia: 3 contra 2</h3>
-          <p className="text-slate-400 text-sm mt-1">El ritmo son fracciones del tiempo. Aquí superponemos $\frac{1}{3}$ y $\frac{1}{2}$.</p>
+          <p className="text-slate-400 text-sm mt-1">El ritmo son fracciones del tiempo. Aquí superponemos 1/3 y 1/2.</p>
         </div>
         <button 
           onClick={toggleRhythm}

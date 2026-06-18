@@ -997,7 +997,7 @@ export default function GeometriaDimensional() {
                </div>
                <h2 className="text-4xl font-bold font-sans text-white mb-4">Espiral Áurea 3D</h2>
                <p className="text-slate-300 leading-relaxed font-light mb-8">
-                 Visualización del gráfico tridimensional donde la espiral áurea ($Φ$) yace en el plano de la Geometría de Reposo.
+                 Visualización del gráfico tridimensional donde la espiral áurea (<em>Φ</em>) yace en el plano de la Geometría de Reposo.
                </p>
                <div className="bg-slate-900/80 border border-slate-700 rounded-2xl p-5 mb-6">
                  <div className="text-2xl font-bold font-serif italic text-amber-400 mb-1">J<sub className="text-sm">s</sub> = 0</div>

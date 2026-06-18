@@ -265,7 +265,7 @@ export default function MatematicasMusicales() {
             >
               <h2 className="text-4xl md:text-5xl font-bold font-serif">La Serie Armónica <br/><span className="text-slate-400 italic font-light">Los <GlossaryTooltip term="Sobretono" definition="Cualquier frecuencia mayor a la fundamental que resuena simultáneamente.">Sobretonos</GlossaryTooltip></span></h2>
               <p className="text-lg text-slate-400 leading-relaxed">
-                Cuando tocas una sola nota, el universo no genera una sola frecuencia. Se desata una serie matemática infinita: la fundamental ($f$), el doble ($2f$), el triple ($3f$).
+                Cuando tocas una sola nota, el universo no genera una sola frecuencia. Se desata una serie matemática infinita: la fundamental (<em>f</em>), el doble (<em>2f</em>), el triple (<em>3f</em>).
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
                 Esta síntesis aditiva es lo que le da "color" o timbre a los instrumentos. Enciende los armónicos para ver cómo se construye una onda compleja.
